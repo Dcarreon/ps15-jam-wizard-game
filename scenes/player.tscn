@@ -7,18 +7,18 @@
 [ext_resource type="Script" path="res://scripts/player_idle_state.gd" id="5_1ajjk"]
 [ext_resource type="Script" path="res://scripts/player_deceleration_state.gd" id="6_ua5j8"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_4xyty"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_53qf3"]
 atlas = ExtResource("1_7xu14")
 region = Rect2(0, 0, 128, 128)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_lkuuc"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_g60mt"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_4xyty")
+"texture": SubResource("AtlasTexture_53qf3")
 }],
 "loop": true,
-"name": &"idle",
+"name": &"default",
 "speed": 5.0
 }]
 
@@ -31,8 +31,7 @@ script = ExtResource("1_om4em")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(3, -3)
-sprite_frames = SubResource("SpriteFrames_lkuuc")
-animation = &"idle"
+sprite_frames = SubResource("SpriteFrames_g60mt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_nmo64")
