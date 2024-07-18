@@ -23,4 +23,7 @@ func _process(_delta: float) -> void:
 	pass
 	
 func _physics_process(_delta: float) -> void:
-	pass
+	if global_position.x < get_global_mouse_position().x :
+		sprite.flip_h = false
+	elif global_position.x > get_global_mouse_position().x:
+		sprite.flip_h = true
