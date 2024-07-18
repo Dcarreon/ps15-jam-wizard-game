@@ -41,11 +41,14 @@ shape = SubResource("CapsuleShape2D_nmo64")
 script = ExtResource("3_8c2ak")
 state = NodePath("PlayerIdleState")
 
-[node name="PlayerFlyState" type="Node" parent="PlayerStateMachine"]
+[node name="PlayerFlyState" type="Node" parent="PlayerStateMachine" node_paths=PackedStringArray("player")]
 script = ExtResource("4_srwon")
+player = NodePath("../..")
 
-[node name="PlayerIdleState" type="Node" parent="PlayerStateMachine"]
+[node name="PlayerIdleState" type="Node" parent="PlayerStateMachine" node_paths=PackedStringArray("player")]
 script = ExtResource("5_1ajjk")
+player = NodePath("../..")
 
-[node name="PlayerDecelerationState" type="Node" parent="PlayerStateMachine"]
+[node name="PlayerDecelerationState" type="Node" parent="PlayerStateMachine" node_paths=PackedStringArray("player")]
 script = ExtResource("6_ua5j8")
+player = NodePath("../..")
