@@ -13,13 +13,14 @@ func _ready() -> void:
 
 func _input(event):
 	if event.is_action_pressed("ui_accept"):
+		print("accept pressed")
 		state_machine._change_state(state_machine.fly_state)
 	if event.is_action_released("ui_accept"):
+		print("accept released")
 		state_machine._change_state(state_machine.deceleration_state)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
-
-func _physics_process(delta: float) -> void:
-	if (velocity == Vector2.ZERO):
-		state_machine._change_state(state_machine.idle_state)
+	
+func _physics_process(_delta: float) -> void:
+	pass

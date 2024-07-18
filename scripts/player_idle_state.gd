@@ -7,7 +7,7 @@ func _ready() -> void:
 	set_physics_process(false)
 
 func _process(delta: float) -> void:
-	player.move_and_collide(player.velocity, delta)
+	player.move_and_collide(player.velocity * delta)
 
 func _enter_state() -> void:
 	set_process(true)

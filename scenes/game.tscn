@@ -6,6 +6,7 @@
 [node name="Game" type="Node2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-3, 9)
 texture = ExtResource("1_xpfwu")
 
 [node name="Player" parent="." instance=ExtResource("1_xwa3k")]
