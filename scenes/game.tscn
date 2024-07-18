@@ -1,8 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://dphea4wrg5oig"]
+[gd_scene load_steps=3 format=3 uid="uid://dphea4wrg5oig"]
 
+[ext_resource type="Texture2D" uid="uid://f50b81176si1" path="res://assets/TestLevelBackground.png" id="1_xpfwu"]
 [ext_resource type="PackedScene" uid="uid://c1pefes17fnxn" path="res://scenes/player.tscn" id="1_xwa3k"]
 
 [node name="Game" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_xpfwu")
 
 [node name="Player" parent="." instance=ExtResource("1_xwa3k")]
 
