@@ -11,7 +11,7 @@ func _process(delta: float) -> void:
 
 func _physics_process(delta: float):
 	var direction := player.global_position.direction_to(player.get_global_mouse_position())
-	player.velocity = player.velocity.move_toward(direction * player.max_speed, player.acceleration * delta)
+	player.velocity = player.move_toward(direction * player.max_speed, player.acceleration * delta)
 
 func _enter_state() -> void:
 	set_process(true)
