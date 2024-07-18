@@ -4,8 +4,8 @@ extends CharacterBody2D
 @onready var collision : CollisionShape2D = $CollisionShape2D
 @onready var state_machine : StateMachine = $PlayerStateMachine
 
-@export var max_speed : float = 400
-@export var acceleration : float = 500
+@export var max_speed : float = 800
+@export var acceleration : float = 1000
 @export var deceleration : float  = 0.02 # Percentage
 
 func _ready() -> void:
