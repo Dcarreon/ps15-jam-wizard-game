@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://c1pefes17fnxn"]
+[gd_scene load_steps=7 format=3 uid="uid://c1pefes17fnxn"]
 
 [ext_resource type="Texture2D" uid="uid://cwt8d0is7cr1q" path="res://assets/Lantern_Placeholder_Sprite_01.png" id="1_7xu14"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_om4em"]
+[ext_resource type="Script" path="res://scripts/player_state_machine.gd" id="3_8c2ak"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4xyty"]
 atlas = ExtResource("1_7xu14")
@@ -34,3 +35,4 @@ animation = &"idle"
 shape = SubResource("CapsuleShape2D_nmo64")
 
 [node name="PlayerStateMachine" type="Node" parent="."]
+script = ExtResource("3_8c2ak")
