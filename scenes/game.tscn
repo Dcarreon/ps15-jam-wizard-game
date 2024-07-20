@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://f50b81176si1" path="res://assets/TestLevelBackground.png" id="1_xpfwu"]
 [ext_resource type="PackedScene" uid="uid://c1pefes17fnxn" path="res://scenes/player.tscn" id="1_xwa3k"]
-[ext_resource type="PackedScene" uid="uid://bd04ynw0tnxga" path="res://scenes/enemy.tscn" id="3_b4r6u"]
+[ext_resource type="PackedScene" path="res://scenes/enemy.tscn" id="3_b4r6u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n678p"]
 size = Vector2(54, 449)
