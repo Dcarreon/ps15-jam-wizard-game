@@ -21,7 +21,7 @@ func _physics_process(delta: float):
 	if not actor.sense_target():
 		lost_target.emit()
 		
-	print_debug("following")
+	#print_debug("following")
 		
 func _enter_state() -> void:
 	ray_cast.set_enabled(true)

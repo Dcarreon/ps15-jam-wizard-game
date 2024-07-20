@@ -30,7 +30,7 @@ func _physics_process(delta: float) -> void:
 	if actor.sense_target():
 		found_target.emit()
 		
-	print_debug("wandering")	
+	#print_debug("wandering")	
 		
 func _enter_state() -> void:
 	ray_cast.set_enabled(true)

@@ -19,6 +19,7 @@ extends CharacterBody2D
 @export var target : CharacterBody2D
 
 var direction = Vector2.ZERO
+
 func _ready() -> void:
 	enemy_wander_state.found_target.connect(state_machine._change_state.bind(enemy_follow_state))
 	enemy_follow_state.lost_target.connect(state_machine._change_state.bind(enemy_wander_state))
@@ -45,7 +46,7 @@ func sense_target():
 	var angle_to_target = front.angle_to(vector_to_target)
 	
 	var target_distance = ray_cast.target_position.distance_to(ray_cast.position)
-	print(rad_to_deg(angle_to_target))
+	#print(rad_to_deg(angle_to_target))
 	# can see the target
 	if target_distance < vision_range and not ray_cast.is_colliding():
 		if angle_to_target < deg_to_rad(vision_angle) and angle_to_target > deg_to_rad(-(vision_angle)):
