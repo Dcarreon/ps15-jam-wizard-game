@@ -1,10 +1,15 @@
 extends "res://scripts/state.gd"
 
 @export var player: CharacterBody2D
+@export var state_machine : StateMachine
 
 func _ready() -> void:
 	set_process(false)
 	set_physics_process(false)
+
+func _input(event):
+	if event.is_action_released("ui_accept"):
+		state_machine._change_state(state_machine.deceleration_state)
 
 func _process(delta: float) -> void:
 	player.move_and_collide(player.velocity * delta)

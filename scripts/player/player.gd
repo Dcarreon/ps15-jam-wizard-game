@@ -11,14 +11,6 @@ extends CharacterBody2D
 func _ready() -> void:
 	pass
 
-func _input(event):
-	if event.is_action_pressed("ui_accept"):
-		print("accept pressed")
-		state_machine._change_state(state_machine.fly_state)
-	if event.is_action_released("ui_accept"):
-		print("accept released")
-		state_machine._change_state(state_machine.deceleration_state)
-
 func _process(_delta: float) -> void:
 	pass
 	
