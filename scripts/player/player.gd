@@ -36,5 +36,3 @@ func _physics_process(_delta: float) -> void:
 		sprite.play("down_forward")
 	if angle_to_mouse > deg_to_rad(61):
 		sprite.play("down")
-
-	print(angle_to_mouse)
