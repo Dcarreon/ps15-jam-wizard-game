@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=3 uid="uid://bd04ynw0tnxga"]
+
+[ext_resource type="Script" path="res://scripts/enemy/enemy.gd" id="1_8hap2"]
+[ext_resource type="Script" path="res://scripts/enemy/enemy_state_machine.gd" id="1_fpwhs"]
+[ext_resource type="Script" path="res://scripts/enemy/enemy_wander_state.gd" id="2_1uyuq"]
+[ext_resource type="Script" path="res://scripts/enemy/enemy_follow_state.gd" id="3_ic88p"]
+[ext_resource type="Script" path="res://scripts/enemy/enemy_attack_state.gd" id="4_yn521"]
+[ext_resource type="Script" path="res://scripts/enemy/enemy_ray_cast_2d.gd" id="6_xili4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ajrri"]
+size = Vector2(100, 100)
+
+[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("target")]
+position = Vector2(-50, -50)
+script = ExtResource("1_8hap2")
+target = NodePath(".")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(50, 50)
+shape = SubResource("RectangleShape2D_ajrri")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+position = Vector2(50, 50)
+offset = Vector2(-50, -50)
+polygon = PackedVector2Array(0, 0, 100, 0, 100, 100, 0, 100)
+
+[node name="Polygon2D" type="Polygon2D" parent="Polygon2D"]
+offset = Vector2(-56, -53)
+polygon = PackedVector2Array(116, 20, 116, 84, 94, 84, 94, 20)
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(50, 50)
+target_position = Vector2(96, 78)
+script = ExtResource("6_xili4")
+
+[node name="EnemyStateMachine" type="Node" parent="." node_paths=PackedStringArray("enemy", "state")]
+script = ExtResource("1_fpwhs")
+enemy = NodePath("..")
+state = NodePath("EnemyWanderState")
+
+[node name="EnemyWanderState" type="Node" parent="EnemyStateMachine" node_paths=PackedStringArray("actor")]
+script = ExtResource("2_1uyuq")
+actor = NodePath("../..")
+
+[node name="EnemyFollowState" type="Node" parent="EnemyStateMachine" node_paths=PackedStringArray("actor")]
+script = ExtResource("3_ic88p")
+actor = NodePath("../..")
+
+[node name="EnemyAttackState" type="Node" parent="EnemyStateMachine"]
+script = ExtResource("4_yn521")
