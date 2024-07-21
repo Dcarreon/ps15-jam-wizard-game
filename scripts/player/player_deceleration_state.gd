@@ -15,7 +15,7 @@ func _process(delta: float) -> void:
 	player.move_and_collide(player.velocity * delta)
 
 func _physics_process(_delta: float) -> void:
-	player.velocity = lerp(player.velocity, Vector2.ZERO, 0.02)
+	player.velocity = lerp(player.velocity, Vector2.ZERO, player.deceleration)
 	player.velocity = _round_vec2_to_whole(player.velocity)
 
 	if player.velocity == Vector2.ZERO:
