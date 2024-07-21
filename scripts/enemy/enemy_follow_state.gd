@@ -5,7 +5,6 @@ extends "res://scripts/state.gd"
 
 var collision : KinematicCollision2D
 signal lost_target
-
 func _ready() -> void:
 	set_process(false)
 	set_physics_process(false)

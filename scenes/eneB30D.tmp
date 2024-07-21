@@ -11,22 +11,25 @@
 size = Vector2(100, 100)
 
 [node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("target")]
+position = Vector2(-50, -50)
 script = ExtResource("1_8hap2")
 target = NodePath(".")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(50, 50)
 shape = SubResource("RectangleShape2D_ajrri")
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
+position = Vector2(50, 50)
 offset = Vector2(-50, -50)
 polygon = PackedVector2Array(0, 0, 100, 0, 100, 100, 0, 100)
 
 [node name="Polygon2D" type="Polygon2D" parent="Polygon2D"]
-position = Vector2(50, 0)
-offset = Vector2(-105, -52)
+offset = Vector2(-56, -53)
 polygon = PackedVector2Array(116, 20, 116, 84, 94, 84, 94, 20)
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(50, 50)
 target_position = Vector2(96, 78)
 script = ExtResource("6_xili4")
 

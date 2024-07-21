@@ -31,11 +31,11 @@ func _process(_delta: float) -> void:
 	
 func _physics_process(_delta: float) -> void:
 	if target:
-		self.ray_cast.target_position = self.target.get_global_position() - self.get_global_position()
+		self.ray_cast.target_position = self.target.global_position - self.get_global_position()
 		#print(ray_cast.target_position.distance_to(ray_cast.position))
 
-func _look_at(direction : Vector2):
-	var desired_angle = get_global_position().angle_to_point(direction)
+func _look_at(_direction : Vector2):
+	var desired_angle = get_global_position().angle_to_point(_direction)
 	var current_angle = lerp_angle(sprite.rotation, desired_angle, 0.02)
 	collision.rotation = current_angle
 	sprite.rotation = current_angle
@@ -63,7 +63,5 @@ func _draw() -> void:
 	var vector_to_target = ray_cast.target_position - ray_cast.position
 	vector_to_target = vector_to_target.normalized()
 	var front = Vector2.from_angle(sprite.rotation).normalized()
-	var target_distance = ray_cast.target_position.distance_to(ray_cast.position)
-	var angle_to_target = front.angle_to(vector_to_target)
 	draw_line(ray_cast.position, front.rotated(deg_to_rad(vision_angle)) * self.vision_range, Color.GREEN, 1.0)
 	draw_line(ray_cast.position, front.rotated(deg_to_rad(-(vision_angle))) * self.vision_range, Color.RED, 1.0)
