@@ -17,6 +17,7 @@ extends CharacterBody2D
 @export var vision_angle : float = 45
 @export var hearing_range : float = 600
 @export var target : CharacterBody2D
+@export var attack_range : float = 20
 
 var direction = Vector2.ZERO
 
@@ -51,7 +52,7 @@ func sense_target():
 	if target_distance < vision_range and not ray_cast.is_colliding():
 		if angle_to_target < deg_to_rad(vision_angle) and angle_to_target > deg_to_rad(-(vision_angle)):
 			return true
-	# can hear the target
+	# can "feel/hear" the target
 	if target_distance < hearing_range:
 		return true
 	return false
