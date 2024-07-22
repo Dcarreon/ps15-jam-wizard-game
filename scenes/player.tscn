@@ -221,23 +221,21 @@ position = Vector2(3, -5)
 shape = SubResource("CapsuleShape2D_nmo64")
 
 [node name="PlayerStateMachine" type="Node" parent="." node_paths=PackedStringArray("state")]
+unique_name_in_owner = true
 script = ExtResource("3_8c2ak")
 state = NodePath("PlayerIdleState")
 
-[node name="PlayerFlyState" type="Node" parent="PlayerStateMachine" node_paths=PackedStringArray("player", "state_machine")]
+[node name="PlayerFlyState" type="Node" parent="PlayerStateMachine" node_paths=PackedStringArray("player")]
 script = ExtResource("4_srwon")
 player = NodePath("../..")
-state_machine = NodePath("..")
 
-[node name="PlayerIdleState" type="Node" parent="PlayerStateMachine" node_paths=PackedStringArray("player", "state_machine")]
+[node name="PlayerIdleState" type="Node" parent="PlayerStateMachine" node_paths=PackedStringArray("player")]
 script = ExtResource("5_1ajjk")
 player = NodePath("../..")
-state_machine = NodePath("..")
 
-[node name="PlayerDecelerationState" type="Node" parent="PlayerStateMachine" node_paths=PackedStringArray("player", "state_machine")]
+[node name="PlayerDecelerationState" type="Node" parent="PlayerStateMachine" node_paths=PackedStringArray("player")]
 script = ExtResource("6_ua5j8")
 player = NodePath("../..")
-state_machine = NodePath("..")
 
 [node name="PlayerFallingDeathState" type="Node" parent="PlayerStateMachine" node_paths=PackedStringArray("player")]
 script = ExtResource("9_aq7gw")

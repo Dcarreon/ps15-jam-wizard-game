@@ -1,7 +1,7 @@
 extends "res://scripts/state.gd"
 
 @export var player: CharacterBody2D
-@export var state_machine : StateMachine
+@onready var state_machine : StateMachine = %PlayerStateMachine
 
 func _ready() -> void:
 	set_process(false)
