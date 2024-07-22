@@ -16,9 +16,8 @@ func _process(delta: float) -> void:
 
 func _physics_process(_delta: float) -> void:
 	player.velocity = lerp(player.velocity, Vector2.ZERO, player.deceleration)
-	player.velocity = _round_vec2_to_whole(player.velocity)
 
-	if player.velocity == Vector2.ZERO:
+	if is_zero_approx(player.velocity.length()): # the length of a vector is equal to its current speed
 		state_machine._change_state(state_machine.idle_state)
 
 func _enter_state() -> void:
@@ -28,15 +27,3 @@ func _enter_state() -> void:
 func _exit_state() -> void:
 	set_process(false)
 	set_physics_process(false)
-
-func _round_vec2_to_whole(vector: Vector2) -> Vector2:
-	if vector.x < 0:
-		vector.x = ceil(vector.x)
-	elif vector.x > 0:
-		vector.x = floor(vector.x)
-	if vector.y < 0:
-		vector.y = ceil(vector.y)
-	elif vector.y > 0:
-		vector.y = floor(vector.y)
-	
-	return vector
