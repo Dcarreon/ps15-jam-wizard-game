@@ -15,7 +15,7 @@ func _process(delta: float) -> void:
 	if target_distance <= actor.attack_range:
 		player_in_range.emit()
 	if not actor.sense_target():
-		lost_target.emit()		
+		lost_target.emit()
 	actor.velocity = actor.velocity.move_toward(actor.direction.normalized() * actor.max_speed, actor.acceleration * delta)
 	collision = actor.move_and_collide(actor.velocity * delta)
 
@@ -25,9 +25,12 @@ func _physics_process(delta: float):
 		if ray_cast.is_colliding():
 			actor.direction = actor.velocity.bounce(collision.get_normal() + ray_cast.position)
 		else:
-			actor.direction = await path_finder(actor.velocity)
+			actor.direction = await path_finder(actor.velocity, 150)
 	else:
-		actor.direction = actor.global_position.direction_to(actor.target.get_global_position())
+		if ray_cast.is_colliding():
+			actor.direction = await path_finder(actor.velocity, 75)
+		else:
+			actor.direction = actor.global_position.direction_to(actor.target.get_global_position())
 	#print_debug("following")
 		
 func _enter_state() -> void:
@@ -42,7 +45,7 @@ func _exit_state() -> void:
 	set_physics_process(false)
 
 ## work in progress
-func path_finder(desired_mov_point):
+func path_finder(desired_mov_point, range):
 	print("start searching path")
 	var temp_ray_1 = RayCast2D.new()
 	temp_ray_1.position = actor.position
@@ -54,16 +57,15 @@ func path_finder(desired_mov_point):
 		print("searching path")
 		temp_ray_1.position = actor.position
 		# reset the ray to the cur_direction without rotation
-		temp_ray_1.target_position = desired_mov_point #+ temp_ray_1.get_collision_normal().normalized() * 120
+		temp_ray_1.target_position = desired_mov_point.normalized() * range
 		temp_ray_1.target_position = temp_ray_1.target_position.rotated(deg_to_rad(angular_range_increase))
 		if not temp_ray_1.is_colliding():
-			#temp_ray_1.target_position = desired_mov_point - temp_ray_1.get_collision_normal().normalized() * 120
 			return temp_ray_1.target_position
 		temp_ray_1.target_position = desired_mov_point
 		temp_ray_1.target_position = temp_ray_1.target_position.rotated(-sign(deg_to_rad(angular_range_increase)))
 		if not temp_ray_1.is_colliding():
 			print("path found") 
 			var res = temp_ray_1.target_position
-		 	#temp_ray_1.queue_free()
+			temp_ray_1.queue_free()
 			return res
 		angular_range_increase += angular_range_increase
