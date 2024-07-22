@@ -14,7 +14,9 @@ func _input(event):
 func _process(delta: float) -> void:
 	player.move_and_collide(player.velocity * delta)
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
+	var direction := player.global_position.direction_to(player.get_global_mouse_position())
+	player.velocity = player.velocity.move_toward(direction * player.velocity.length(), player.acceleration * delta)
 	player.velocity = lerp(player.velocity, Vector2.ZERO, player.deceleration)
 
 	if is_zero_approx(player.velocity.length()): # the length of a vector is equal to its current speed
