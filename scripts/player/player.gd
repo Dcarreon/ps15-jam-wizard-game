@@ -6,7 +6,7 @@ extends CharacterBody2D
 
 @export var max_speed : float = 800
 @export var acceleration : float = 1000
-@export var deceleration : float  = 0.02 # Percentage
+@export var deceleration : float  = 0.01 # Percentage
 
 func _ready() -> void:
 	pass

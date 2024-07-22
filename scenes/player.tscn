@@ -222,7 +222,7 @@ shape = SubResource("CapsuleShape2D_nmo64")
 [node name="PlayerStateMachine" type="Node" parent="." node_paths=PackedStringArray("state")]
 unique_name_in_owner = true
 script = ExtResource("3_8c2ak")
-state = NodePath("PlayerIdleState")
+state = NodePath("PlayerFlyState")
 
 [node name="PlayerFlyState" type="Node" parent="PlayerStateMachine" node_paths=PackedStringArray("player")]
 script = ExtResource("4_srwon")

@@ -8,7 +8,7 @@ func _ready() -> void:
 	set_physics_process(false)
 
 func _input(event):
-	if event.is_action_pressed("ui_accept"):
+	if event.is_action_released("ui_accept"):
 		state_machine._change_state(state_machine.fly_state)
 
 func _process(delta: float) -> void:
