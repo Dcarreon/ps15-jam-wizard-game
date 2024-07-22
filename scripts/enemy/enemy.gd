@@ -25,19 +25,19 @@ func _ready() -> void:
 	enemy_wander_state.found_target.connect(state_machine._change_state.bind(enemy_follow_state))
 	enemy_follow_state.lost_target.connect(state_machine._change_state.bind(enemy_wander_state))
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	queue_redraw()
 	var look_direction = velocity * max_speed
-	_look_at(look_direction)
+	_look_at(look_direction, delta)
 	
 func _physics_process(_delta: float) -> void:
 	if target:
 		self.ray_cast.target_position = self.target.global_position - self.get_global_position()
 		#print(ray_cast.target_position.distance_to(ray_cast.position))
 
-func _look_at(_direction : Vector2):
+func _look_at(_direction : Vector2, delta : float):
 	var desired_angle = get_global_position().angle_to_point(_direction)
-	var current_angle = lerp_angle(sprite.rotation, desired_angle, 0.02)
+	var current_angle = desired_angle#lerp_angle(sprite.rotation, desired_angle, 0.02)
 	collision.rotation = current_angle
 	sprite.rotation = current_angle
 	
