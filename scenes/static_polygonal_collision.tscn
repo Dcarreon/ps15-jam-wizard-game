@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cc3ajiujpwmhn"]
+
+[ext_resource type="Script" path="res://scripts/level/polygonal_collision.gd" id="1_jfgv1"]
+
+[sub_resource type="Curve2D" id="Curve2D_rdnwp"]
+
+[node name="StaticPolygonalCollision" type="StaticBody2D"]
+script = ExtResource("1_jfgv1")
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_rdnwp")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
