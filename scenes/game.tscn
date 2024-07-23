@@ -1,33 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://dphea4wrg5oig"]
+[gd_scene load_steps=3 format=3 uid="uid://dphea4wrg5oig"]
 
-[ext_resource type="Texture2D" uid="uid://f50b81176si1" path="res://assets/TestLevelBackground.png" id="1_xpfwu"]
+[ext_resource type="Texture2D" uid="uid://8y3kunf81hmp" path="res://assets/Map_Start_04.png" id="1_ljwr2"]
 [ext_resource type="PackedScene" uid="uid://c1pefes17fnxn" path="res://scenes/player.tscn" id="1_xwa3k"]
-[ext_resource type="PackedScene" uid="uid://bd04ynw0tnxga" path="res://scenes/enemy.tscn" id="3_b4r6u"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_n678p"]
-size = Vector2(54, 449)
 
 [node name="Game" type="Node2D"]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="LevelLayout" type="Sprite2D" parent="."]
 position = Vector2(-3, 9)
-texture = ExtResource("1_xpfwu")
+texture = ExtResource("1_ljwr2")
 
 [node name="Player" parent="." instance=ExtResource("1_xwa3k")]
+position = Vector2(-347, -206)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position_smoothing_enabled = true
-
-[node name="Enemy" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_b4r6u")]
-position = Vector2(944, 458)
-target = NodePath("../Player")
-
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(218, 668.5)
-shape = SubResource("RectangleShape2D_n678p")
-
-[node name="Polygon2D" type="Polygon2D" parent="StaticBody2D"]
-color = Color(0.794799, 0.595898, 0, 1)
-polygon = PackedVector2Array(191, 451, 188, 890, 247, 895, 247, 443)
