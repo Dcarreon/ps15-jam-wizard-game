@@ -5,7 +5,9 @@
 
 [node name="Game" type="Node2D"]
 
-[node name="LevelLayout" type="Sprite2D" parent="."]
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="LevelLayout" type="Sprite2D" parent="StaticBody2D"]
 position = Vector2(-3, 9)
 texture = ExtResource("1_ljwr2")
 
