@@ -1,15 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dphea4wrg5oig"]
+[gd_scene load_steps=2 format=3 uid="uid://dphea4wrg5oig"]
 
-[ext_resource type="Texture2D" uid="uid://8y3kunf81hmp" path="res://assets/Map_Start_04.png" id="1_ljwr2"]
 [ext_resource type="PackedScene" uid="uid://c1pefes17fnxn" path="res://scenes/player.tscn" id="1_xwa3k"]
 
 [node name="Game" type="Node2D"]
-
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-
-[node name="LevelLayout" type="Sprite2D" parent="StaticBody2D"]
-position = Vector2(-3, 9)
-texture = ExtResource("1_ljwr2")
 
 [node name="Player" parent="." instance=ExtResource("1_xwa3k")]
 position = Vector2(-347, -206)
