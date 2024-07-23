@@ -6,7 +6,7 @@ extends StaticBody2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	var points : PackedVector2Array = line.get_baked_points()
+	var points : PackedVector2Array = line.curve.get_baked_points()
 
 	collision.polygon = points
 	shape.polygon = points
