@@ -27,7 +27,9 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	queue_redraw()
-	var look_direction = velocity * max_speed
+	var look_direction = target.global_position    
+	if velocity != Vector2.ZERO:
+		look_direction = velocity * max_speed
 	_look_at(look_direction, delta)
 	
 func _physics_process(_delta: float) -> void:
