@@ -4,9 +4,9 @@ extends CharacterBody2D
 @onready var collision : CollisionShape2D = $CollisionShape2D
 @onready var state_machine : StateMachine = $PlayerStateMachine
 
-@export var max_speed : float = 800
-@export var acceleration : float = 1000
-@export var deceleration : float  = 0.01 # Percentage
+@export var max_speed : float = 10000
+@export var acceleration : float = 800
+@export var deceleration : float  = 0.05 # Percentage
 
 func _ready() -> void:
 	pass
@@ -15,6 +15,9 @@ func _process(_delta: float) -> void:
 	pass
 	
 func _physics_process(_delta: float) -> void:
+	_animation_follows_mouse()
+
+func _animation_follows_mouse() -> void:
 	if global_position.x < get_global_mouse_position().x :
 		sprite.flip_h = true
 	elif global_position.x > get_global_mouse_position().x:
