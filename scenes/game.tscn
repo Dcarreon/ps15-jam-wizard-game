@@ -617,7 +617,7 @@ curve = SubResource("Curve2D_8kurk")
 [node name="Path2D" parent="StaticCollisions/54" index="0"]
 curve = SubResource("Curve2D_dnj2o")
 
-[node name="55" parent="StaticCollisions" instance=ExtResource("3_6yxu4")]
+[node name="55" parent="StaticCollisions" groups=["static_collisions"] instance=ExtResource("3_6yxu4")]
 
 [node name="Path2D" parent="StaticCollisions/55" index="0"]
 curve = SubResource("Curve2D_0r8br")
