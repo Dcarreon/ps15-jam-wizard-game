@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://b8m0ax8fv41b0"]
+
+[sub_resource type="Curve2D" id="Curve2D_cbx1s"]
+
+[node name="FallingArea" type="Area2D"]
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_cbx1s")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
