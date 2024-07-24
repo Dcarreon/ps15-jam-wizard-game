@@ -3,6 +3,10 @@
 [ext_resource type="Script" path="res://scripts/level/polygonal_collision.gd" id="1_jfgv1"]
 
 [sub_resource type="Curve2D" id="Curve2D_rdnwp"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -204, -383, 0, 0, 0, 0, -204, -383)
+}
+point_count = 2
 
 [node name="StaticPolygonalCollision" type="StaticBody2D"]
 script = ExtResource("1_jfgv1")
