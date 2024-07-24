@@ -1,18 +1,20 @@
 extends CharacterBody2D
 
 @onready var sprite : AnimatedSprite2D = $AnimatedSprite2D
-@onready var collision : CollisionShape2D = $CollisionShape2D
+@onready var collision_object : CollisionShape2D = $CollisionShape2D
 @onready var state_machine : StateMachine = $PlayerStateMachine
 
 @export var max_speed : float = 10000
 @export var acceleration : float = 800
 @export var deceleration : float  = 0.05 # Percentage
 
+var collision : KinematicCollision2D
+
 func _ready() -> void:
 	pass
 
-func _process(_delta: float) -> void:
-	pass
+func _process(delta: float) -> void:
+	collision = move_and_collide(velocity * delta)
 	
 func _physics_process(_delta: float) -> void:
 	_animation_follows_mouse()
