@@ -6,6 +6,7 @@ extends "res://scripts/state.gd"
 func _ready() -> void:
 	set_process(false)
 	set_physics_process(false)
+	set_process_input(false)
 
 func _input(event):
 	if event.is_action_pressed("ui_accept"):
@@ -28,7 +29,9 @@ func _physics_process(delta: float):
 func _enter_state() -> void:
 	set_process(true)
 	set_physics_process(true)
+	set_process_input(true)
 
 func _exit_state() -> void:
 	set_process(false)
 	set_physics_process(false)
+	set_process_input(false)

@@ -212,10 +212,10 @@ script = ExtResource("1_om4em")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(3, -3)
 sprite_frames = SubResource("SpriteFrames_g60mt")
-animation = &"falling"
+animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(3, 10)
+position = Vector2(3, 5)
 shape = SubResource("CircleShape2D_eepkr")
 
 [node name="PlayerStateMachine" type="Node" parent="." node_paths=PackedStringArray("state")]

@@ -12,4 +12,5 @@ func _ready() -> void:
 	collision_object.polygon = points
 
 func _on_body_entered(body: Node2D):
+	print("collided with falling area")
 	signal_bus.falling_area_entered.emit(body)

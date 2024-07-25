@@ -9,5 +9,7 @@ func _ready() -> void:
 	signal_bus.falling_area_entered.connect(_on_falling_area_entered)
 
 func _on_falling_area_entered(body: Node2D):
+	print("game manager falling area script")
 	if body.name == "Player":
+		print("body identified as Player")
 		player._player_damaged(0)

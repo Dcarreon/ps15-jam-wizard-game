@@ -6,7 +6,7 @@ extends CharacterBody2D
 @onready var state_machine : StateMachine = $PlayerStateMachine
 
 @export var max_speed : float = 10000
-@export var acceleration : float = 800
+@export var acceleration : float = 500
 @export var deceleration : float  = 0.05 # Percentage
 
 var max_health : int 
