@@ -1,10 +1,11 @@
-[gd_scene load_steps=62 format=3 uid="uid://dphea4wrg5oig"]
+[gd_scene load_steps=63 format=3 uid="uid://dphea4wrg5oig"]
 
+[ext_resource type="Script" path="res://scripts/level/game_manager.gd" id="1_cjq3u"]
+[ext_resource type="Script" path="res://scripts/level/signal_bus.gd" id="1_irbs0"]
 [ext_resource type="Texture2D" uid="uid://8y3kunf81hmp" path="res://assets/Map_Start_04.png" id="1_w06vm"]
 [ext_resource type="PackedScene" uid="uid://c1pefes17fnxn" path="res://scenes/player.tscn" id="1_xwa3k"]
 [ext_resource type="PackedScene" uid="uid://cc3ajiujpwmhn" path="res://scenes/static_polygonal_collision.tscn" id="3_6yxu4"]
-[ext_resource type="PackedScene" uid="uid://bd04ynw0tnxga" path="res://scenes/enemy.tscn" id="4_knrt0"]
-[ext_resource type="Script" path="res://scripts/enemy/enemy_wander_region.gd" id="5_4lnsu"]
+[ext_resource type="PackedScene" uid="uid://b8m0ax8fv41b0" path="res://scenes/falling_area.tscn" id="5_spilx"]
 
 [sub_resource type="Curve2D" id="Curve2D_xgfmb"]
 _data = {
@@ -336,12 +337,21 @@ _data = {
 }
 point_count = 5
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_ef340"]
-vertices = PackedVector2Array(249.961, 554.352, 195.922, 505.312, 223.211, 439.289, 278.477, 396.633, 561.852, 781.961, 428.906, 779.031, 298.398, 730.328, 210.891, 647.477, 726.562, 312.781, 804.742, 398.688, 820.203, 475.062, 769.562, 531.672, 577.406, 300.547, 665.531, 275.797, 780.711, 630.062, 753.93, 680.844, 678.008, 751.961, 398.531, 284.508, 467.047, 255.812)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32Array(5, 6, 7, 0, 4), PackedInt32Array(8, 9, 10, 11, 12, 13), PackedInt32Array(11, 14, 15, 16, 4, 3, 17, 18, 12)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(467, 245, 393, 276, 272, 389, 215, 433, 184, 508, 238, 557, 199, 650, 293, 739, 427, 789, 563, 792, 683, 761, 762, 687, 791, 632, 780, 535, 831, 478, 814, 394, 733, 305, 667, 265, 578, 290)])
+[sub_resource type="Curve2D" id="Curve2D_sompv"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 205, 1046, -33.371, 18.6878, 33.371, -18.6878, 225, 1004, 0, 0, 0, 0, 286, 978, -33.371, -19.3552, 33.371, 19.3552, 339, 998, 0, 0, 0, 0, 371, 1038, 29.3665, -10.6787, -29.3665, 10.6787, 316, 1104, 0, 0, 0, 0, 261, 1108, 10.0113, 10.6787, -10.0113, -10.6787, 227, 1095, 0, 0, 0, 0, 205, 1046)
+}
+point_count = 9
 
 [node name="Game" type="Node2D"]
+
+[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("signal_bus", "player")]
+script = ExtResource("1_cjq3u")
+signal_bus = NodePath("../SignalBus")
+player = NodePath("../Player")
+
+[node name="SignalBus" type="Node" parent="."]
+script = ExtResource("1_irbs0")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_w06vm")
@@ -629,14 +639,17 @@ curve = SubResource("Curve2D_dnj2o")
 [node name="Path2D" parent="StaticCollisions/55" index="0"]
 curve = SubResource("Curve2D_0r8br")
 
-[node name="Enemy" parent="." node_paths=PackedStringArray("target") instance=ExtResource("4_knrt0")]
-position = Vector2(508, 539)
-target = NodePath("../Player")
+[node name="FallingAreas" type="Node" parent="."]
 
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
-navigation_polygon = SubResource("NavigationPolygon_ef340")
-script = ExtResource("5_4lnsu")
+[node name="FallingArea" parent="FallingAreas" node_paths=PackedStringArray("signal_bus") instance=ExtResource("5_spilx")]
+signal_bus = NodePath("../../SignalBus")
 
+[node name="Path2D" parent="FallingAreas/FallingArea" index="0"]
+curve = SubResource("Curve2D_sompv")
+
+[connection signal="body_entered" from="FallingAreas/FallingArea" to="FallingAreas/FallingArea" method="_on_body_entered"]
+
+[editable path="Player"]
 [editable path="StaticCollisions/1"]
 [editable path="StaticCollisions/2"]
 [editable path="StaticCollisions/3"]
@@ -692,3 +705,4 @@ script = ExtResource("5_4lnsu")
 [editable path="StaticCollisions/53"]
 [editable path="StaticCollisions/54"]
 [editable path="StaticCollisions/55"]
+[editable path="FallingAreas/FallingArea"]
