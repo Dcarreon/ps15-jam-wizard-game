@@ -11,7 +11,6 @@ extends CharacterBody2D
 
 var max_health : int 
 var health : int 
-var damaged : bool
 
 enum damage_type {
 	FALLING
@@ -22,14 +21,12 @@ var collision : KinematicCollision2D
 func _ready() -> void:
 	max_health = 3
 	health = 3
-	damaged = false
 
 func _process(delta: float) -> void:
 	collision = move_and_collide(velocity * delta)
 	
 func _physics_process(_delta: float) -> void:
-	if !damaged:
-		_animation_follows_mouse()
+	pass
 
 func _animation_follows_mouse() -> void:
 	if global_position.x < get_global_mouse_position().x :
@@ -55,7 +52,6 @@ func _animation_follows_mouse() -> void:
 		sprite.play("down")
 
 func _player_damaged(type: int):
-	damaged = true
 	state_machine._change_state(state_machine.no_input_state)
 	match type:
 		0: #FALLING
@@ -63,7 +59,9 @@ func _player_damaged(type: int):
 			health = health - 1
 			sprite.play("falling")
 
-#func _on_animation_sprite_2d_animation_finished(anim_name: String):
-#	match anim_name:
-#		"falling":
-#			get_tree().reload_current_scene()
+func _on_animated_sprite_2d_animation_finished() ->void:
+	var anim_name : String = sprite.animation
+	print(anim_name)
+	match anim_name:
+		"falling":
+			get_tree().reload_current_scene()
