@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=3 uid="uid://dphea4wrg5oig"]
+[gd_scene load_steps=65 format=3 uid="uid://dphea4wrg5oig"]
 
 [ext_resource type="Script" path="res://scripts/level/game_manager.gd" id="1_cjq3u"]
 [ext_resource type="Script" path="res://scripts/level/signal_bus.gd" id="1_irbs0"]
@@ -343,6 +343,14 @@ _data = {
 }
 point_count = 9
 
+[sub_resource type="Curve2D" id="Curve2D_6bwyx"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -106, 1336, -42.0448, -0.840896, 42.0448, 0.840896, -51, 1297, 0, 0, 0, 0, 137, 1266, -31.1132, -15.1361, 31.1132, 15.1361, 212, 1314, 0, 0, 0, 0, 273, 1341, 23.5451, -14.2952, -23.5451, 14.2952, 212, 1384, 0, 0, 0, 0, 148, 1410, -42.0448, -11.7725, 42.0448, 11.7725, 25, 1362, 0, 0, 0, 0, -106, 1336)
+}
+point_count = 9
+
+[sub_resource type="Curve2D" id="Curve2D_0widg"]
+
 [node name="Game" type="Node2D"]
 
 [node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("signal_bus", "player")]
@@ -641,13 +649,27 @@ curve = SubResource("Curve2D_0r8br")
 
 [node name="FallingAreas" type="Node" parent="."]
 
-[node name="FallingArea" parent="FallingAreas" node_paths=PackedStringArray("signal_bus") instance=ExtResource("5_spilx")]
+[node name="1" parent="FallingAreas" node_paths=PackedStringArray("signal_bus") instance=ExtResource("5_spilx")]
 signal_bus = NodePath("../../SignalBus")
 
-[node name="Path2D" parent="FallingAreas/FallingArea" index="0"]
+[node name="Path2D" parent="FallingAreas/1" index="0"]
 curve = SubResource("Curve2D_sompv")
 
-[connection signal="body_entered" from="FallingAreas/FallingArea" to="FallingAreas/FallingArea" method="_on_body_entered"]
+[node name="2" parent="FallingAreas" node_paths=PackedStringArray("signal_bus") instance=ExtResource("5_spilx")]
+signal_bus = NodePath("../../SignalBus")
+
+[node name="Path2D" parent="FallingAreas/2" index="0"]
+curve = SubResource("Curve2D_6bwyx")
+
+[node name="3" parent="FallingAreas" node_paths=PackedStringArray("signal_bus") instance=ExtResource("5_spilx")]
+signal_bus = NodePath("../../SignalBus")
+
+[node name="Path2D" parent="FallingAreas/3" index="0"]
+curve = SubResource("Curve2D_0widg")
+
+[connection signal="body_entered" from="FallingAreas/1" to="FallingAreas/1" method="_on_body_entered"]
+[connection signal="body_entered" from="FallingAreas/2" to="FallingAreas/2" method="_on_body_entered"]
+[connection signal="body_entered" from="FallingAreas/3" to="FallingAreas/3" method="_on_body_entered"]
 
 [editable path="Player"]
 [editable path="StaticCollisions/1"]
@@ -705,4 +727,6 @@ curve = SubResource("Curve2D_sompv")
 [editable path="StaticCollisions/53"]
 [editable path="StaticCollisions/54"]
 [editable path="StaticCollisions/55"]
-[editable path="FallingAreas/FallingArea"]
+[editable path="FallingAreas/1"]
+[editable path="FallingAreas/2"]
+[editable path="FallingAreas/3"]
