@@ -16,11 +16,11 @@ player = NodePath("../Player")
 script = ExtResource("1_irbs0")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(3, 3)
+scale = Vector2(4, 4)
 texture = ExtResource("3_xav7q")
 
 [node name="Player" parent="." instance=ExtResource("1_xwa3k")]
-position = Vector2(74, 725)
+position = Vector2(98, 961)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position_smoothing_enabled = true
