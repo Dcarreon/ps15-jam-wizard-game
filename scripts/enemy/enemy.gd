@@ -13,11 +13,12 @@ extends CharacterBody2D
 
 @export var max_speed : float = 400
 @export var acceleration : float = 300
-@export var vision_range : float = 1000
+@export var vision_range : float = 400
 @export var vision_angle : float = 45
-@export var hearing_range : float = 600
+@export var hearing_range : float = 500
 @export var target : CharacterBody2D
 @export var attack_range : float = 20
+@export var target_memory : float = 2
 
 var direction = Vector2.ZERO
 
@@ -27,19 +28,19 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	queue_redraw()
-	var look_direction = target.global_position    
-	if velocity != Vector2.ZERO:
-		look_direction = velocity * max_speed
+	var look_direction = velocity * max_speed
+	if velocity == Vector2.ZERO and sense_target():
+		look_direction = target.global_position 
 	_look_at(look_direction, delta)
 	
 func _physics_process(_delta: float) -> void:
 	if target:
-		self.ray_cast.target_position = self.target.global_position - self.get_global_position()
+		self.ray_cast.target_position = (target.global_position - global_position) * 2
 		#print(ray_cast.target_position.distance_to(ray_cast.position))
 
-func _look_at(_direction : Vector2, delta : float):
+func _look_at(_direction : Vector2, _delta : float):
 	var desired_angle = get_global_position().angle_to_point(_direction)
-	var current_angle = desired_angle#lerp_angle(sprite.rotation, desired_angle, 0.02)
+	var current_angle = lerp_angle(sprite.rotation, desired_angle, 0.03)
 	collision.rotation = current_angle
 	sprite.rotation = current_angle
 	

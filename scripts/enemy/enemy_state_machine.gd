@@ -6,10 +6,10 @@ extends "res://scripts/state_machine.gd"
 @onready var attack_state : State = $EnemyAttackState
 
 func _ready() -> void:
-	_change_state(state)
+	_change_state(wander_state)
 
 func _change_state(new_state: State):
-	if state is State:
+	if state is State and not state == new_state:
 		state._exit_state()	
 	new_state._enter_state()
 	state = new_state

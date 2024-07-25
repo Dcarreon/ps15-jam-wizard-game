@@ -12,12 +12,12 @@ func _process(_delta: float) -> void:
 	pass
 
 func _enter_state() -> void:
-	ray_cast.set_enabled(true)
-	print("wander state")
+	pass
+	print("attack state")
 	set_process(true)
 	set_physics_process(true)
 
 func _exit_state() -> void:
-	ray_cast.set_enabled(false)
+	pass
 	set_process(false)
 	set_physics_process(false)
