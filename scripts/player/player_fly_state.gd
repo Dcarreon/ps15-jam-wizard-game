@@ -23,6 +23,7 @@ func _physics_process(delta: float):
 	else:
 		var direction := player.global_position.direction_to(player.get_global_mouse_position())
 		player.velocity = player.velocity.move_toward(direction * player.max_speed, player.acceleration * delta)
+	player._animation_follows_mouse()
 
 func _enter_state() -> void:
 	set_process(true)

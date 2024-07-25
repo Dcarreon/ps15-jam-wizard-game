@@ -165,7 +165,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_2qlhg")
 }],
-"loop": true,
+"loop": false,
 "name": &"falling",
 "speed": 10.0
 }, {
@@ -202,9 +202,8 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nmo64"]
-radius = 15.0
-height = 42.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_eepkr"]
+radius = 12.0
 
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(-3, -17)
@@ -214,11 +213,10 @@ script = ExtResource("1_om4em")
 position = Vector2(3, -3)
 sprite_frames = SubResource("SpriteFrames_g60mt")
 animation = &"falling"
-frame_progress = 0.109002
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(3, -5)
-shape = SubResource("CapsuleShape2D_nmo64")
+position = Vector2(3, 10)
+shape = SubResource("CircleShape2D_eepkr")
 
 [node name="PlayerStateMachine" type="Node" parent="." node_paths=PackedStringArray("state")]
 unique_name_in_owner = true
@@ -239,3 +237,5 @@ player = NodePath("../..")
 
 [node name="PlayerNoInputState" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("9_3jan3")
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

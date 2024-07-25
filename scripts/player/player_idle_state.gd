@@ -12,6 +12,7 @@ func _input(event):
 		state_machine._change_state(state_machine.fly_state)
 
 func _process(delta: float) -> void:
+	player._animation_follows_mouse()
 	player.move_and_collide(player.velocity * delta)
 
 func _enter_state() -> void:
