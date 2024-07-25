@@ -7,15 +7,17 @@
 [ext_resource type="Script" path="res://scripts/enemy/enemy_attack_state.gd" id="4_yn521"]
 [ext_resource type="Script" path="res://scripts/enemy/enemy_ray_cast_2d.gd" id="6_xili4"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ajrri"]
-size = Vector2(100, 100)
+[sub_resource type="CircleShape2D" id="CircleShape2D_au13p"]
+radius = 58.3095
 
 [node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("target")]
+scale = Vector2(0.5, 0.5)
+motion_mode = 1
 script = ExtResource("1_8hap2")
 target = NodePath(".")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_ajrri")
+shape = SubResource("CircleShape2D_au13p")
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 offset = Vector2(-50, -50)
@@ -39,9 +41,17 @@ state = NodePath("EnemyWanderState")
 script = ExtResource("2_1uyuq")
 actor = NodePath("../..")
 
-[node name="EnemyFollowState" type="Node" parent="EnemyStateMachine" node_paths=PackedStringArray("actor")]
+[node name="EnemyFollowState" type="Node" parent="EnemyStateMachine"]
 script = ExtResource("3_ic88p")
-actor = NodePath("../..")
 
 [node name="EnemyAttackState" type="Node" parent="EnemyStateMachine"]
 script = ExtResource("4_yn521")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+target_desired_distance = 60.0
+avoidance_enabled = true
+avoidance_layers = 2
+avoidance_mask = 2
+debug_enabled = true
+
+[node name="Timer" type="Timer" parent="NavigationAgent2D"]
