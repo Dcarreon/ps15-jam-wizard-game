@@ -61,7 +61,10 @@ func target_setup():
 		navigation_agent.target_position = actor.target.global_position
 		
 func _enter_state() -> void:
-	navigation_agent.target_desired_distance = actor.collision.shape.radius + actor.target.collision_object.shape.radius * 8
+	var actor_radius = actor.collision.shape.radius * actor.scale.x
+	var target_radius = actor.target.collision_object.shape.radius * actor.target.scale.x
+	navigation_agent.target_desired_distance = actor_radius + target_radius + 20
+	
 	#print(navigation_agent.target_desired_distance)
 	navigation_agent.max_speed = actor.max_speed
 	target_lost_timer = 0
