@@ -19,7 +19,7 @@ func _process(delta: float) -> void:
 func _enter_state() -> void:
 	set_process(true)
 	set_physics_process(true)
-	set_process_input(false)
+	set_process_input(true)
 
 func _exit_state() -> void:
 	set_process(false)
