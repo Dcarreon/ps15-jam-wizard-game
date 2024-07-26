@@ -11,23 +11,24 @@ extends CharacterBody2D
 @onready var enemy_follow_state: Node = $EnemyStateMachine/EnemyFollowState
 @onready var enemy_attack_state: Node = $EnemyStateMachine/EnemyAttackState
 
-@export var max_speed : float = 400
+@export var max_speed : float = 500
 @export var acceleration : float = 300
-@export var vision_range : float = 400
+@export var vision_range : float = 600
 @export var vision_angle : float = 45
-@export var hearing_range : float = 500
+@export var hearing_range : float = 1000
 @export var target : CharacterBody2D
 @export var attack_range : float = 20
 @export var target_memory : float = 2
 
 var direction = Vector2.ZERO
-
+var origin : Vector2
 func _ready() -> void:
+	origin = global_position
 	enemy_wander_state.found_target.connect(state_machine._change_state.bind(enemy_follow_state))
 	enemy_follow_state.lost_target.connect(state_machine._change_state.bind(enemy_wander_state))
 
 func _process(delta: float) -> void:
-	queue_redraw()
+	#queue_redraw()
 	var look_direction = velocity * max_speed
 	if velocity == Vector2.ZERO and sense_target():
 		look_direction = target.global_position 
@@ -35,12 +36,12 @@ func _process(delta: float) -> void:
 	
 func _physics_process(_delta: float) -> void:
 	if target:
-		self.ray_cast.target_position = (target.global_position - global_position) * 2
+		self.ray_cast.target_position = (target.global_position - global_position)
 		#print(ray_cast.target_position.distance_to(ray_cast.position))
 
 func _look_at(_direction : Vector2, _delta : float):
 	var desired_angle = get_global_position().angle_to_point(_direction)
-	var current_angle = lerp_angle(sprite.rotation, desired_angle, 0.03)
+	var current_angle = lerp_angle(sprite.rotation, desired_angle, pow(max_speed, 0.008))
 	collision.rotation = current_angle
 	sprite.rotation = current_angle
 	
@@ -63,9 +64,9 @@ func sense_target():
 ##-------------------------------
 ##            DEBUG
 ##-------------------------------
-func _draw() -> void:
-	var vector_to_target = ray_cast.target_position - ray_cast.position
-	vector_to_target = vector_to_target.normalized()
-	var front = Vector2.from_angle(sprite.rotation).normalized()
-	draw_line(ray_cast.position, front.rotated(deg_to_rad(vision_angle)) * self.vision_range, Color.GREEN, 1.0)
-	draw_line(ray_cast.position, front.rotated(deg_to_rad(-(vision_angle))) * self.vision_range, Color.RED, 1.0)
+#func _draw() -> void:
+	#var vector_to_target = ray_cast.target_position - ray_cast.position
+	#vector_to_target = vector_to_target.normalized()
+	#var front = Vector2.from_angle(sprite.rotation).normalized()
+	#draw_line(ray_cast.position, front.rotated(deg_to_rad(vision_angle)) * self.vision_range, Color.GREEN, 1.0)
+	#draw_line(ray_cast.position, front.rotated(deg_to_rad(-(vision_angle))) * self.vision_range, Color.RED, 1.0)

@@ -15,7 +15,6 @@ func _ready() -> void:
 	set_process(false)
 	set_physics_process(false)
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	if !is_instance_valid(actor.target):
@@ -29,15 +28,18 @@ func _physics_process(delta):
 		if target_lost_timer >= actor.target_memory:
 			lost_target.emit()
 			return 
-	else:
+	elif navigation_agent.is_target_reachable():
 		target_lost_timer = 0
 			
 	if not navigation_agent.is_target_reachable():
-		lost_target.emit()
-		return 
-			
+		target_lost_timer += delta
+		if target_lost_timer >= actor.target_memory:
+			lost_target.emit()
+			return 
+	
 	navigation_agent.target_position = actor.target.global_position
-	var current_agent_position = ray_cast.global_position
+		
+	var current_agent_position = actor.global_position
 	var next_path_position = navigation_agent.get_next_path_position()
 	var new_velocity = current_agent_position.direction_to(next_path_position) * actor.max_speed       
 	
@@ -45,8 +47,9 @@ func _physics_process(delta):
 		navigation_agent.set_velocity(new_velocity)
 	else:
 		actor.velocity = _on_velocity_computed(new_velocity)
-	
-	actor.move_and_slide()
+
+func _process(delta: float) -> void:
+	actor.move_and_collide(actor.velocity * delta)
 
 
 func _on_velocity_computed(safe_velocity):
@@ -55,21 +58,23 @@ func _on_velocity_computed(safe_velocity):
 func actor_setup():
 	await get_tree().physics_frame
 	if actor.target:
-		navigation_agent.target_desired_distance = 70
 		navigation_agent.target_position = actor.target.global_position
 		
 func _enter_state() -> void:
+	navigation_agent.target_desired_distance = actor.collision.shape.radius + actor.target.collision_object.shape.radius * 8
+	#print(navigation_agent.target_desired_distance)
+	navigation_agent.max_speed = actor.max_speed
 	target_lost_timer = 0
-	navigation_agent.connect("velocity_computed", _on_velocity_computed)
+	navigation_agent.connect("velocity_computed", Callable(self, "_on_velocity_computed"))
 	#actor = await $"../.."
 	ray_cast.set_enabled(true)
 	call_deferred("actor_setup")
 	set_process(true)
 	set_physics_process(true)
-	print("follow state")
+	#print("follow state")
 
 func _exit_state() -> void:
-	navigation_agent.disconnect("velocity_computed", _on_velocity_computed)
+	navigation_agent.disconnect("velocity_computed", Callable(self, "_on_velocity_computed"))
 	ray_cast.set_enabled(false)   
 	set_process(false)
 	set_physics_process(false) 
