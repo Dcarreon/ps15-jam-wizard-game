@@ -51,7 +51,7 @@ func _animation_follows_mouse() -> void:
 	if angle_to_mouse > deg_to_rad(61):
 		sprite.play("down")
 
-func _player_damaged(type: int):
+func _player_damaged(type: damage_type):
 	state_machine._change_state(state_machine.no_input_state)
 	match type:
 		0: #FALLING
