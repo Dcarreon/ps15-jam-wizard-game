@@ -26,6 +26,7 @@ var origin : Vector2
 
 func _ready() -> void:
 	origin = global_position
+	ray_cast.scale = ray_cast.scale / scale
 	enemy_wander_state.found_target.connect(state_machine._change_state.bind(enemy_follow_state))
 	enemy_follow_state.lost_target.connect(state_machine._change_state.bind(enemy_wander_state))
 

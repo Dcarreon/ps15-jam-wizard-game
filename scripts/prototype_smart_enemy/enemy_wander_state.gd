@@ -15,7 +15,7 @@ func _ready() -> void:
 	set_physics_process(false)
 	
 func _process(delta: float) -> void:
-	var desired_velocity : Vector2 = await actor.get_best_direction(nav_path_next_pos) * actor.max_speed
+	var desired_velocity : Vector2 = await actor.get_best_direction(nav_path_next_pos) * (actor.max_speed / 2)
 	var steering_force = desired_velocity - actor.velocity
 	actor.velocity = actor.velocity + (steering_force*6) * delta 
 	actor.move_and_collide(actor.velocity * delta)
@@ -57,7 +57,6 @@ func target_setup():
 	await get_tree().physics_frame
 	nav_path_next_pos = navigation_agent.get_next_path_position()
 	navigation_agent.target_position = actor.origin
-
 	
 func _on_target_reached():
 	pass

@@ -60,7 +60,7 @@ func _physics_process(delta):
 func _process(delta: float) -> void:
 	var desired_velocity : Vector2 = await actor.get_best_direction(nav_path_next_pos) * actor.max_speed
 	var steering_force = desired_velocity - actor.velocity
-	actor.velocity = actor.velocity + (steering_force * delta)
+	actor.velocity = actor.velocity + (steering_force * 12 * delta)
 	actor.move_and_collide(actor.velocity * delta)
 
 func target_setup():
@@ -74,16 +74,13 @@ func _enter_state() -> void:
 	var target_radius = actor.target.collision_object.shape.radius * actor.target.scale.x
 	navigation_agent.target_desired_distance = actor_radius + target_radius + 20
 	
-	#print(navigation_agent.target_desired_distance)
-	navigation_agent.max_speed = actor.max_speed
 	target_lost_timer = 0
 	navigation_agent.connect("velocity_computed", Callable(self, "_on_velocity_computed"))
-	#actor = await $"../.."
 	ray_cast.set_enabled(true)
 	call_deferred("target_setup")
 	set_process(true)
 	set_physics_process(true)
-	print("follow state")
+	#print("follow state")
 
 func _exit_state() -> void:
 	navigation_agent.disconnect("velocity_computed", Callable(self, "_on_velocity_computed"))
