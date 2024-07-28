@@ -34,9 +34,8 @@ polygon = PackedVector2Array(116, 20, 116, 84, 94, 84, 94, 20)
 target_position = Vector2(96, 78)
 script = ExtResource("6_xili4")
 
-[node name="EnemyStateMachine" type="Node" parent="." node_paths=PackedStringArray("enemy", "state")]
+[node name="EnemyStateMachine" type="Node" parent="." node_paths=PackedStringArray("state")]
 script = ExtResource("1_fpwhs")
-enemy = NodePath("..")
 state = NodePath("EnemyWanderState")
 
 [node name="EnemyWanderState" type="Node" parent="EnemyStateMachine" node_paths=PackedStringArray("actor")]
@@ -54,5 +53,6 @@ target_desired_distance = 60.0
 avoidance_enabled = true
 avoidance_layers = 2
 avoidance_mask = 2
+debug_enabled = true
 
 [node name="Timer" type="Timer" parent="NavigationAgent2D"]
