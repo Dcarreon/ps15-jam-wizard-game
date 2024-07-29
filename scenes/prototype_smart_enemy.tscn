@@ -1,0 +1,98 @@
+[gd_scene load_steps=13 format=3 uid="uid://d4bksgen358x4"]
+
+[ext_resource type="Script" path="res://scripts/prototype_smart_enemy/enemy.gd" id="1_fp571"]
+[ext_resource type="Texture2D" uid="uid://chh8payonmbu5" path="res://assets/Shadow_Beast_Sprite.png" id="2_1rasx"]
+[ext_resource type="Script" path="res://scripts/prototype_smart_enemy/enemy_ray_cast_2d.gd" id="2_ah3t5"]
+[ext_resource type="Script" path="res://scripts/prototype_smart_enemy/enemy_state_machine.gd" id="3_bmoa3"]
+[ext_resource type="Script" path="res://scripts/prototype_smart_enemy/enemy_wander_state.gd" id="4_8fx22"]
+[ext_resource type="Script" path="res://scripts/prototype_smart_enemy/enemy_follow_state.gd" id="5_2td1b"]
+[ext_resource type="Script" path="res://scripts/prototype_smart_enemy/enemy_attack_state.gd" id="6_wmypl"]
+[ext_resource type="Script" path="res://scripts/util/ray_direction_setup.gd" id="7_o8o6u"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_au13p"]
+radius = 45.7609
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dia2s"]
+atlas = ExtResource("2_1rasx")
+region = Rect2(4.76, 8.829, 233, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e8qo5"]
+atlas = ExtResource("2_1rasx")
+region = Rect2(4.76, 174, 233, 150)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_emmn4"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"Back",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"Front",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[node name="Enemy" type="CharacterBody2D"]
+scale = Vector2(4, 4)
+motion_mode = 1
+wall_min_slide_angle = 0.0
+script = ExtResource("1_fp571")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(4.25, 2.25)
+shape = SubResource("CircleShape2D_au13p")
+
+[node name="Sprites" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="Front" type="Sprite2D" parent="Sprites"]
+visible = false
+position = Vector2(-0.25, 0.25)
+texture = SubResource("AtlasTexture_dia2s")
+offset = Vector2(15.25, -21)
+
+[node name="Back" type="Sprite2D" parent="Sprites"]
+visible = false
+position = Vector2(-0.25, 0.25)
+texture = SubResource("AtlasTexture_e8qo5")
+offset = Vector2(15.25, -21)
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(96, 78)
+script = ExtResource("2_ah3t5")
+
+[node name="EnemyStateMachine" type="Node" parent="."]
+script = ExtResource("3_bmoa3")
+
+[node name="EnemyWanderState" type="Node" parent="EnemyStateMachine"]
+script = ExtResource("4_8fx22")
+
+[node name="EnemyFollowState" type="Node" parent="EnemyStateMachine"]
+script = ExtResource("5_2td1b")
+
+[node name="EnemyAttackState" type="Node" parent="EnemyStateMachine"]
+script = ExtResource("6_wmypl")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+target_desired_distance = 60.0
+avoidance_layers = 2
+avoidance_mask = 2
+
+[node name="Timer" type="Timer" parent="NavigationAgent2D"]
+
+[node name="RayDirection" type="Node2D" parent="."]
+script = ExtResource("7_o8o6u")
+number_of_rays = 32
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(11.75, -17.25)
+sprite_frames = SubResource("SpriteFrames_emmn4")
+animation = &"Idle"
+
+[connection signal="ready" from="RayDirection" to="RayDirection" method="_on_ready"]
