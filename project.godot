@@ -32,6 +32,12 @@ fly_key={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_5="enemy_movement_collider"
+2d_physics/layer_6="enemy_body_collider"
+2d_physics/layer_7="alchemy_projectiles"
+
 [physics]
 
 2d/default_gravity=0.0
