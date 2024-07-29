@@ -114,6 +114,9 @@ metadata/_edit_lock_ = true
 z_index = 2
 position = Vector2(-3370, 2795)
 
+[node name="AnimatedSprite2D" parent="Player" index="0"]
+animation = &"down"
+
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
