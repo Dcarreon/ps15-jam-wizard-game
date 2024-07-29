@@ -1,213 +1,19 @@
-[gd_scene load_steps=53 format=3 uid="uid://dphea4wrg5oig"]
+[gd_scene load_steps=27 format=3 uid="uid://dphea4wrg5oig"]
 
 [ext_resource type="Script" path="res://scripts/level/game_manager.gd" id="1_cjq3u"]
 [ext_resource type="Script" path="res://scripts/level/signal_bus.gd" id="1_irbs0"]
 [ext_resource type="PackedScene" uid="uid://c1pefes17fnxn" path="res://scenes/player.tscn" id="1_xwa3k"]
-[ext_resource type="PackedScene" uid="uid://cc3ajiujpwmhn" path="res://scenes/static_polygonal_collision.tscn" id="3_6yxu4"]
-[ext_resource type="Texture2D" uid="uid://byrn184orw0yr" path="res://assets/Map_Test_05.png" id="3_xav7q"]
+[ext_resource type="Texture2D" uid="uid://cgwjidnym3dhx" path="res://assets/Map_Textured_01_Road.png" id="3_seh6e"]
+[ext_resource type="Texture2D" uid="uid://e7q8smpdv4s6" path="res://assets/Map_Textured_01.png" id="5_pe1rk"]
 [ext_resource type="PackedScene" uid="uid://b8m0ax8fv41b0" path="res://scenes/falling_area.tscn" id="6_i5x3v"]
 [ext_resource type="Script" path="res://scripts/enemy/navigation_region.gd" id="8_c52k4"]
-[ext_resource type="Texture2D" uid="uid://b8tp8uxtqjods" path="res://assets/road.png" id="9_ilmrx"]
+[ext_resource type="Texture2D" uid="uid://japnt54hq338" path="res://assets/Pit_Sprite_Sheet.png" id="8_lj00k"]
 [ext_resource type="PackedScene" uid="uid://d4bksgen358x4" path="res://scenes/prototype_smart_enemy.tscn" id="9_lxlyq"]
 [ext_resource type="Script" path="res://scripts/level/road_boundry.gd" id="10_crxo0"]
 
-[sub_resource type="Curve2D" id="Curve2D_c2sco"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 33, 684, 0, 0, 0, 0, -423, 642, 0, 0, 0, 0, -419, 1282, 0, 0, 0, 0, 31, 1248, 14.1421, 248.902, -14.1421, -248.902, -310, 980, 0, 0, 0, 0, 33, 684)
-}
-point_count = 6
-
-[sub_resource type="Curve2D" id="Curve2D_uoppu"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 33, 685, -46.6691, -26.8701, 46.6691, 26.8701, 296, 754, 0, 0, 0, 0, 390, 857, 0, 0, 0, 0, 425, 754, 0, 0, 0, 0, 90, 603, 0, 0, 0, 0, 33, 685)
-}
-point_count = 6
-
-[sub_resource type="Curve2D" id="Curve2D_84nv7"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 390, 858, -14, -20, 14, 20, 490, 927, 0, 0, 0, 0, 509, 1010, 0, 0, 0, 0, 554, 1013, -21, 8, 21, -8, 640, 930, 0, 0, 0, 0, 726, 904, 0, 0, 0, 0, 390, 858)
-}
-point_count = 7
-
-[sub_resource type="Curve2D" id="Curve2D_m27k2"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 26, 1246, -74.92, 29.7302, 74.92, -29.7302, 186, 1223, 0, 0, 0, 0, 331, 1122, 6.74238, -5.24408, -6.74238, 5.24408, 320, 1164, 0, 0, 0, 0, 296, 1196, 0, 0, 0, 0, 33, 1287, 0, 0, 0, 0, 26, 1246)
-}
-point_count = 7
-
-[sub_resource type="Curve2D" id="Curve2D_i2lwc"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 295, 1195, -49.0815, -41.5305, 49.0815, 41.5305, 329, 1363, 0, 0, 0, 0, 432, 1397, 0, 0, 0, 0, 257, 1415, 0, 0, 0, 0, 295, 1195)
-}
-point_count = 5
-
-[sub_resource type="Curve2D" id="Curve2D_lfgd8"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 430, 1396, -24.7018, 8.42797, 24.7018, -8.42797, 505, 1381, 0, 0, 0, 0, 608, 1266, 0, 0, 0, 0, 639, 1264, 0, 0, 0, 0, 634, 1360, 0, 0, 0, 0, 652, 1434, 0, 0, 0, 0, 594, 1454, 0, 0, 0, 0, 438, 1463, 0, 0, 0, 0, 430, 1396)
-}
-point_count = 9
-
-[sub_resource type="Curve2D" id="Curve2D_pvkba"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 507, 1010, 7.49154, -23.9729, -7.49154, 23.9729, 493, 1094, 0, 0, 0, 0, 459, 1219, 0, 0, 0, 0, 477, 1225, 7.49154, -20.2271, -7.49154, 20.2271, 521, 1090, 0, 0, 0, 0, 555, 1013)
-}
-point_count = 6
-
-[sub_resource type="Curve2D" id="Curve2D_3x0tg"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 658, 1161, 0, 0, 0, 0, 679, 1163, 0, 0, 0, 0, 666, 1226, 0, 0, 0, 0, 640, 1267, 0, 0, 0, 0, 605, 1265, 0, 0, 0, 0, 637, 1216, 0, 0, 0, 0, 658, 1161)
-}
-point_count = 7
-
-[sub_resource type="Curve2D" id="Curve2D_wwqma"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 725, 904, -37, -73, 37, 73, 842, 969, 0, 0, 0, 0, 835, 1276, 0, 0, 0, 0, 960, 1148, 0, 0, 0, 0, 848, 844, 0, 0, 0, 0, 725, 904)
-}
-point_count = 6
-
-[sub_resource type="Curve2D" id="Curve2D_yq4aw"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 1271, 1379, -90.7143, -448.532, 90.7143, 448.532, 1943, 1854, 0, 0, 0, 0, 1595, 2390, 0, 0, 0, 0, 2139, 2404, 0, 0, 0, 0, 2063, 1235, 0, 0, 0, 0, 1271, 1379)
-}
-point_count = 6
-
-[sub_resource type="Curve2D" id="Curve2D_bvb8o"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 836, 1275, 0, 0, 0, 0, 1276, 1380, 0, 0, 0, 0, 1124, 1398, 0, 0, 0, 0, 961, 1439, 0, 0, 0, 0, 886, 1404, 4.48985, 17.9594, -4.48985, -17.9594, 871, 1327, 0, 0, 0, 0, 836, 1275)
-}
-point_count = 7
-
-[sub_resource type="Curve2D" id="Curve2D_evqg8"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 1110, 1687, 84, -111, -84, 111, 1050, 1940, 0, 0, 0, 0, 778, 2093, 0, 0, 0, 0, 764, 2232, -120, 25, 120, -25, 1197, 2198, 0, 0, 0, 0, 1561, 2070, 88, 156, -88, -156, 1582, 1826, 0, 0, 0, 0, 1329, 1653, 0, 0, 0, 0, 1110, 1687)
-}
-point_count = 9
-
-[sub_resource type="Curve2D" id="Curve2D_xlwjj"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 764, 2434, -152.735, 9.8995, 152.735, -9.8995, 1194, 2435, 0, 0, 0, 0, 1599, 2386, 0, 0, 0, 0, 1646, 3143, 0, 0, 0, 0, 763, 3126, 0, 0, 0, 0, 764, 2434)
-}
-point_count = 6
-
-[sub_resource type="Curve2D" id="Curve2D_4xs0p"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 779, 2091, 183.948, 57.9564, -183.948, -57.9564, 287, 2105, 0, 0, 0, 0, 105, 1928, 0, 0, 0, 0, 107, 2209, 0, 0, 0, 0, 764, 2208, 0, 0, 0, 0, 779, 2091)
-}
-point_count = 6
-
-[sub_resource type="Curve2D" id="Curve2D_xmjgw"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 106, 2209, 0, 0, 0, 0, 104, 1928, 0, 0, 0, 0, 61, 1926, 172.692, 13.773, -172.692, -13.773, -154, 2034, 0, 0, 0, 0, -359, 1883, 0, 0, 0, 0, -360, 2208, 0, 0, 0, 0, 106, 2209)
-}
-point_count = 7
-
-[sub_resource type="Curve2D" id="Curve2D_qvwe0"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, -361, 2208, 0, 0, 0, 0, -359, 1885, 0, 0, 0, 0, -379, 1881, 188, -13, -188, 13, -584, 2043, 0, 0, 0, 0, -848, 1954, 0, 0, 0, 0, -848, 2207, 0, 0, 0, 0, -361, 2208)
-}
-point_count = 7
-
-[sub_resource type="Curve2D" id="Curve2D_rpkdq"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, -850, 1954, 0, 0, 0, 0, -851, 1921, 10.4882, 66.6747, -10.4882, -66.6747, -876, 1819, 0, 0, 0, 0, -885, 1581, 0, 0, 0, 0, -1066, 1584, 0, 0, 0, 0, -1080, 2210, 0, 0, 0, 0, -848, 2210, 0, 0, 0, 0, -850, 1954)
-}
-point_count = 8
-
-[sub_resource type="Curve2D" id="Curve2D_j4mkc"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, -1356, 1577, 0, 0, 0, 0, -901, 1579, 0, 0, 0, 0, -903, -1483, 0, 0, 0, 0, -1355, -1478, 0, 0, 0, 0, -1356, 1577)
-}
-point_count = 5
-
-[sub_resource type="Curve2D" id="Curve2D_umf28"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, -1081, 2210, 0, 0, 0, 0, -1073, 1577, 0, 0, 0, 0, -1356, 1577, 0, 0, 0, 0, -1355, 2074, 0, 0, 0, 0, -1324, 2074, 0, 0, 0, 0, -1324, 2209, 0, 0, 0, 0, -1081, 2210)
-}
-point_count = 7
-
-[sub_resource type="Curve2D" id="Curve2D_0k74v"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, -902, 1318, 0, 0, 0, 0, -616, 1317, 0, 0, 0, 0, -616, 1594, -176.93, 31.7839, 176.93, -31.7839, -424, 1388, 0, 0, 0, 0, -164, 1482, 0, 0, 0, 0, -165, 1223, 0, 0, 0, 0, -902, 1223, 0, 0, 0, 0, -902, 1318)
-}
-point_count = 8
-
-[sub_resource type="Curve2D" id="Curve2D_2007g"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, -164, 1485, 0, 0, 0, 0, -134, 1554, 0, 0, 0, 0, -116, 1552, -177.748, 15.386, 177.748, -15.386, 69, 1427, 0, 0, 0, 0, 305, 1519, 0, 0, 0, 0, 291, 1362, 0, 0, 0, 0, -163, 1362, 0, 0, 0, 0, -164, 1485)
-}
-point_count = 8
-
-[sub_resource type="Curve2D" id="Curve2D_exfwd"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 61, 1926, 0, 0, 0, 0, 61, 1713, 0, 0, 0, 0, 103, 1617, 0, 0, 0, 0, 138, 1628, 0, 0, 0, 0, 104, 1727, 0, 0, 0, 0, 104, 1927, 0, 0, 0, 0, 61, 1926)
-}
-point_count = 7
-
-[sub_resource type="Curve2D" id="Curve2D_0wmdc"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, -135, 1552, 0, 0, 0, 0, -117, 1552, 0, 0, 0, 0, -117, 1798, 0, 0, 0, 0, -132, 1798, 0, 0, 0, 0, -135, 1552)
-}
-point_count = 5
-
-[sub_resource type="Curve2D" id="Curve2D_spwae"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, -135, 1552, 0, 0, 0, 0, -117, 1552, 0, 0, 0, 0, -117, 1798, 0, 0, 0, 0, -132, 1798, 0, 0, 0, 0, -135, 1552)
-}
-point_count = 5
-
-[sub_resource type="Curve2D" id="Curve2D_7qni4"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, -135, 1552, 0, 0, 0, 0, -117, 1552, 0, 0, 0, 0, -117, 1762, 0, 0, 0, 0, -134, 1764, 0, 0, 0, 0, -135, 1552)
-}
-point_count = 5
-
-[sub_resource type="Curve2D" id="Curve2D_o5k38"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 763, 3095, 0, 0, 0, 0, -1810, 3094, 0, 0, 0, 0, -1821, 3305, 0, 0, 0, 0, 761, 3303, 0, 0, 0, 0, 763, 3095)
-}
-point_count = 5
-
-[sub_resource type="Curve2D" id="Curve2D_cp0bg"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, -1808, 2210, 0, 0, 0, 0, -1808, 3094, 0, 0, 0, 0, -2011, 3103, 0, 0, 0, 0, -2011, 2210, 0, 0, 0, 0, -1808, 2210)
-}
-point_count = 5
-
-[sub_resource type="Curve2D" id="Curve2D_4xnuh"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, -1808, 2210, 0, 0, 0, 0, -1720, 2210, 0, 0, 0, 0, -1720, 2073, 0, 0, 0, 0, -1689, 2073, 0, 0, 0, 0, -1688, -1778, 0, 0, 0, 0, -1932, -1774, 0, 0, 0, 0, -1933, 2208, 0, 0, 0, 0, -1808, 2210)
-}
-point_count = 8
-
-[sub_resource type="Curve2D" id="Curve2D_we1si"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, -1691, -1779, -979.907, 206.922, 979.907, -206.922, -794, -2716, 0, 0, 0, 0, 631, -2473, 0, 0, 0, 0, 327, -3207, 0, 0, 0, 0, -1839, -2743, 0, 0, 0, 0, -1691, -1779)
-}
-point_count = 6
-
-[sub_resource type="Curve2D" id="Curve2D_0qpiq"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, -1352, -1481, 0, 0, 0, 0, 235, -2103, 0, 0, 0, 0, -33, -2348, 295.778, -201.343, -295.778, 201.343, -985, -2080, 0, 0, 0, 0, -1352, -1481)
-}
-point_count = 5
-
-[sub_resource type="Curve2D" id="Curve2D_lmmqk"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 235, -2103, -411.072, -877.235, 411.072, 877.235, 89, -505, 0, 0, 0, 0, 1375, 313, 0, 0, 0, 0, -548, 480, 0, 0, 0, 0, -681, -2105, 0, 0, 0, 0, 235, -2103)
-}
-point_count = 6
-
-[sub_resource type="Curve2D" id="Curve2D_woj5d"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 1374, 311, -21.6923, 1456.29, 21.6923, -1456.29, 2650, -1183, 0, 0, 0, 0, 1218, -2666, 0, 0, 0, 0, 2912, -3249, 0, 0, 0, 0, 3850, 351, 0, 0, 0, 0, 1374, 311)
-}
-point_count = 6
-
-[sub_resource type="Curve2D" id="Curve2D_43lsh"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 628, -2474, -146.151, 42.8373, 146.151, -42.8373, 940, -2615, 0, 0, 0, 0, 1219, -2664, 0, 0, 0, 0, 1162, -2840, 0, 0, 0, 0, 538, -2702, 0, 0, 0, 0, 628, -2474)
-}
-point_count = 6
+[sub_resource type="AtlasTexture" id="AtlasTexture_itiww"]
+atlas = ExtResource("8_lj00k")
+region = Rect2(79.9148, 83.8872, 50.1687, 42.2112)
 
 [sub_resource type="Curve2D" id="Curve2D_6jp78"]
 _data = {
@@ -215,11 +21,19 @@ _data = {
 }
 point_count = 9
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_3xmou"]
+atlas = ExtResource("8_lj00k")
+region = Rect2(95.9127, 128.901, 107.115, 46.1623)
+
 [sub_resource type="Curve2D" id="Curve2D_2wk3x"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -12, 2822, 0, 0, 0, 0, 20, 2781, 0, 0, 0, 0, 152, 2770, 0, 0, 0, 0, 246, 2743, 0, 0, 0, 0, 285, 2760, 0, 0, 0, 0, 326, 2796, 0, 0, 0, 0, 390, 2820, 0, 0, 0, 0, 375, 2842, 0, 0, 0, 0, 342, 2854, 0, 0, 0, 0, 305, 2881, 0, 0, 0, 0, 259, 2898, 0, 0, 0, 0, 138, 2851, 0, 0, 0, 0, 1, 2834, 0, 0, 0, 0, -12, 2822)
 }
 point_count = 14
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hm6wd"]
+atlas = ExtResource("8_lj00k")
+region = Rect2(111.982, 2.64111, 95.157, 77.3749)
 
 [sub_resource type="Curve2D" id="Curve2D_mnlhw"]
 _data = {
@@ -227,11 +41,19 @@ _data = {
 }
 point_count = 13
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_rxvwk"]
+atlas = ExtResource("8_lj00k")
+region = Rect2(-0.0784702, 63.9435, 76.171, 55.0926)
+
 [sub_resource type="Curve2D" id="Curve2D_y7r4v"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -535, 2621, 0, 0, 0, 0, -530, 2595, 0, 0, 0, 0, -494, 2589, 0, 0, 0, 0, -375, 2634, 0, 0, 0, 0, -266, 2719, 0, 0, 0, 0, -261, 2756, 0, 0, 0, 0, -275, 2781, 0, 0, 0, 0, -325, 2777, 0, 0, 0, 0, -367, 2757, 0, 0, 0, 0, -423, 2715, 0, 0, 0, 0, -426, 2696, 0, 0, 0, 0, -448, 2695, 0, 0, 0, 0, -535, 2621)
 }
 point_count = 13
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b2tbn"]
+atlas = ExtResource("8_lj00k")
+region = Rect2(64.2417, 0.451788, 48.3471, 63.1905)
 
 [sub_resource type="Curve2D" id="Curve2D_q6dm1"]
 _data = {
@@ -239,11 +61,19 @@ _data = {
 }
 point_count = 12
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_c2534"]
+atlas = ExtResource("8_lj00k")
+region = Rect2(0, 0, 64.5, 57)
+
 [sub_resource type="Curve2D" id="Curve2D_fsxml"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -1104, 2380, 0, 0, 0, 0, -882, 2384, 0, 0, 0, 0, -896, 2432, 0, 0, 0, 0, -924, 2446, 0, 0, 0, 0, -954, 2528, 0, 0, 0, 0, -978, 2547, 0, 0, 0, 0, -1007, 2525, 0, 0, 0, 0, -1040, 2434, 0, 0, 0, 0, -1104, 2380)
 }
 point_count = 9
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xus6j"]
+atlas = ExtResource("8_lj00k")
+region = Rect2(-0.120358, 128.879, 86.1235, 79.1214)
 
 [sub_resource type="Curve2D" id="Curve2D_sc8cn"]
 _data = {
@@ -251,10 +81,10 @@ _data = {
 }
 point_count = 9
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_rneee"]
-vertices = PackedVector2Array(1483.49, -2637.01, 1858.51, -2524.9, 2181.11, -2292.62, 2443.3, -1973.83, 2604.19, -1579.55, 2645.93, -1167.17, 2589.28, -750.758, 2413.28, -357.008, 2240.4, -116.563, 2046.1, 70.7891, 1719.78, 239.406, 1322.87, 309.859, 985.656, 258.281, 959.5, -500.5, 959.5, -1235.5, 1090.43, -2640.98, 878.5, -500.5, 633.328, 115.359, 326.609, -154.617, 108.992, -484.523, 496.211, -2369.12, 878.5, -1235.5, -19.1328, -841.117, -52.9219, -1249.54, 18.5938, -1646.88, 236.398, -2101.4, 367.188, -2248.04, 645.156, -2468.42, 805.852, -2554.71)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15), PackedInt32Array(16, 13, 12, 17, 18, 19), PackedInt32Array(20, 21, 16, 19, 22, 23, 24, 25, 26), PackedInt32Array(20, 27, 28, 15, 14, 21)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(228, -2107, 9, -1650, -63, -1250, -29, -839, 100, -480, 319, -148, 628, 124, 983, 268, 1323, 320, 1723, 249, 2052, 79, 2248, -110, 2422, -352, 2599, -748, 2656, -1167, 2614, -1582, 2452, -1979, 2188, -2300, 1863, -2534, 1485, -2647, 1089, -2651, 802, -2564, 640, -2477, 490, -2377, 360, -2255)])
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_our7q"]
+vertices = PackedVector2Array(2233.5, -365.531, 2233.5, -197.5, 2192.5, -197.5, 2192.5, -892.5, 2232.04, -892.5, 3892.89, -1492.23, 3830.15, -786.18, 3598.07, -150.688, 3255.42, 334.383, 2920.88, 644.031, 2534.52, 889.992, 2254.03, -174.844, 2253.5, -364.047, 2253.5, -912.5, 3723.56, -2190.44, 3097.17, -3129.55, 3463.62, -2682.44, 2251.94, -912.5, 2251.93, -914, 2506.41, -3532.02, 2172, -176.156, 1984.6, 1093.22, 1402.8, 1168.93, 814.141, 1112.16, 207.477, 902.969, -387.094, 510.57, 1851.47, -3772.53, 2172, -914, 1488.3, -3678.49, -830.297, -71.0781, -1070.37, -626.93, -1171.95, -1177.63, -1140.08, -1746.28, -994.742, -2240.04, -684.742, -2784.29, -432.258, -3093.43, -44.9609, -3339.99, 112.5, -3479.52, 536.141, -3675.43, 1037.48, -3777.5, 1125.64, -3825.94)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32Array(5, 6, 7, 8, 9, 10, 11, 12, 13, 14), PackedInt32Array(15, 16, 14, 13, 17, 18, 19), PackedInt32Array(20, 11, 10, 21, 22, 23, 24, 25), PackedInt32Array(26, 19, 18, 27, 28), PackedInt32Array(28, 27, 20, 25, 29, 30, 31, 32, 33, 34, 35, 36), PackedInt32Array(28, 36, 37, 38, 39), PackedInt32Array(40, 28, 39)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(1125, -3837, 1489, -3689, 1852, -3783, 2511, -3541, 3104, -3137, 3472, -2688, 3733, -2194, 3903, -1493, 3840, -784, 3607, -146, 3263, 341, 2927, 652, 2539, 899, 1987, 1103, 1403, 1179, 812, 1122, 203, 912, -394, 518, -839, -66, -1080, -624, -1182, -1177, -1150, -1748, -1004, -2244, -693, -2790, -439, -3101, -51, -3348, 107, -3488, 533, -3685, 1034, -3787)])
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5pa5k"]
 size = Vector2(61, 715)
@@ -269,284 +99,136 @@ player = NodePath("../Player")
 [node name="SignalBus" type="Node" parent="."]
 script = ExtResource("1_irbs0")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D2" type="Sprite2D" parent="."]
 scale = Vector2(4, 4)
-texture = ExtResource("3_xav7q")
+texture = ExtResource("3_seh6e")
+script = ExtResource("10_crxo0")
 metadata/_edit_lock_ = true
 
-[node name="Road" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(4, 4)
-texture = ExtResource("9_ilmrx")
-script = ExtResource("10_crxo0")
+texture = ExtResource("5_pe1rk")
+metadata/_edit_lock_ = true
 
 [node name="Player" parent="." instance=ExtResource("1_xwa3k")]
-position = Vector2(101, 965)
+z_index = 2
+position = Vector2(-4426, 4699)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 
-[node name="StaticCollisions" type="Node" parent="."]
-
-[node name="1" parent="StaticCollisions" instance=ExtResource("3_6yxu4")]
-metadata/_edit_lock_ = true
-
-[node name="Path2D" parent="StaticCollisions/1" index="0"]
-curve = SubResource("Curve2D_c2sco")
-
-[node name="2" parent="StaticCollisions" instance=ExtResource("3_6yxu4")]
-metadata/_edit_lock_ = true
-
-[node name="Path2D" parent="StaticCollisions/2" index="0"]
-curve = SubResource("Curve2D_uoppu")
-
-[node name="3" parent="StaticCollisions" instance=ExtResource("3_6yxu4")]
-metadata/_edit_lock_ = true
-
-[node name="Path2D" parent="StaticCollisions/3" index="0"]
-curve = SubResource("Curve2D_84nv7")
-
-[node name="4" parent="StaticCollisions" instance=ExtResource("3_6yxu4")]
-metadata/_edit_lock_ = true
-
-[node name="Path2D" parent="StaticCollisions/4" index="0"]
-curve = SubResource("Curve2D_m27k2")
-
-[node name="5" parent="StaticCollisions" instance=ExtResource("3_6yxu4")]
-metadata/_edit_lock_ = true
-
-[node name="Path2D" parent="StaticCollisions/5" index="0"]
-curve = SubResource("Curve2D_i2lwc")
-
-[node name="6" parent="StaticCollisions" instance=ExtResource("3_6yxu4")]
-metadata/_edit_lock_ = true
-
-[node name="Path2D" parent="StaticCollisions/6" index="0"]
-curve = SubResource("Curve2D_lfgd8")
-
-[node name="7" parent="StaticCollisions" instance=ExtResource("3_6yxu4")]
-metadata/_edit_lock_ = true
-
-[node name="Path2D" parent="StaticCollisions/7" index="0"]
-curve = SubResource("Curve2D_pvkba")
-
-[node name="8" parent="StaticCollisions" instance=ExtResource("3_6yxu4")]
-metadata/_edit_lock_ = true
-
-[node name="Path2D" parent="StaticCollisions/8" index="0"]
-curve = SubResource("Curve2D_3x0tg")
-
-[node name="9" parent="StaticCollisions" instance=ExtResource("3_6yxu4")]
-metadata/_edit_lock_ = true
-
-[node name="Path2D" parent="StaticCollisions/9" index="0"]
-curve = SubResource("Curve2D_wwqma")
-
-[node name="10" parent="StaticCollisions" instance=ExtResource("3_6yxu4")]
-metadata/_edit_lock_ = true
-
-[node name="Path2D" parent="StaticCollisions/10" index="0"]
-curve = SubResource("Curve2D_yq4aw")
-
-[node name="11" parent="StaticCollisions" instance=ExtResource("3_6yxu4")]
-metadata/_edit_lock_ = true
-
-[node name="Path2D" parent="StaticCollisions/11" index="0"]
-curve = SubResource("Curve2D_bvb8o")
-
-[node name="12" parent="StaticCollisions" instance=ExtResource("3_6yxu4")]
-metadata/_edit_lock_ = true
-
-[node name="Path2D" parent="StaticCollisions/12" index="0"]
-curve = SubResource("Curve2D_evqg8")
-
-[node name="13" parent="StaticCollisions" instance=ExtResource("3_6yxu4")]
-metadata/_edit_lock_ = true
-
-[node name="Path2D" parent="StaticCollisions/13" index="0"]
-curve = SubResource("Curve2D_xlwjj")
-
-[node name="14" parent="StaticCollisions" instance=ExtResource("3_6yxu4")]
-metadata/_edit_lock_ = true
-
-[node name="Path2D" parent="StaticCollisions/14" index="0"]
-curve = SubResource("Curve2D_4xs0p")
-
-[node name="15" parent="StaticCollisions" instance=ExtResource("3_6yxu4")]
-metadata/_edit_lock_ = true
-
-[node name="Path2D" parent="StaticCollisions/15" index="0"]
-curve = SubResource("Curve2D_xmjgw")
-
-[node name="16" parent="StaticCollisions" instance=ExtResource("3_6yxu4")]
-metadata/_edit_lock_ = true
-
-[node name="Path2D" parent="StaticCollisions/16" index="0"]
-curve = SubResource("Curve2D_qvwe0")
-
-[node name="17" parent="StaticCollisions" instance=ExtResource("3_6yxu4")]
-metadata/_edit_lock_ = true
-
-[node name="Path2D" parent="StaticCollisions/17" index="0"]
-curve = SubResource("Curve2D_rpkdq")
-
-[node name="18" parent="StaticCollisions" instance=ExtResource("3_6yxu4")]
-metadata/_edit_lock_ = true
-
-[node name="Path2D" parent="StaticCollisions/18" index="0"]
-curve = SubResource("Curve2D_j4mkc")
-
-[node name="19" parent="StaticCollisions" instance=ExtResource("3_6yxu4")]
-metadata/_edit_lock_ = true
-
-[node name="Path2D" parent="StaticCollisions/19" index="0"]
-curve = SubResource("Curve2D_umf28")
-
-[node name="20" parent="StaticCollisions" instance=ExtResource("3_6yxu4")]
-metadata/_edit_lock_ = true
-
-[node name="Path2D" parent="StaticCollisions/20" index="0"]
-curve = SubResource("Curve2D_0k74v")
-
-[node name="21" parent="StaticCollisions" instance=ExtResource("3_6yxu4")]
-metadata/_edit_lock_ = true
-
-[node name="Path2D" parent="StaticCollisions/21" index="0"]
-curve = SubResource("Curve2D_2007g")
-
-[node name="22" parent="StaticCollisions" instance=ExtResource("3_6yxu4")]
-metadata/_edit_lock_ = true
-
-[node name="Path2D" parent="StaticCollisions/22" index="0"]
-curve = SubResource("Curve2D_exfwd")
-
-[node name="23" parent="StaticCollisions" instance=ExtResource("3_6yxu4")]
-metadata/_edit_lock_ = true
-
-[node name="Path2D" parent="StaticCollisions/23" index="0"]
-curve = SubResource("Curve2D_0wmdc")
-
-[node name="24" parent="StaticCollisions" instance=ExtResource("3_6yxu4")]
-metadata/_edit_lock_ = true
-
-[node name="Path2D" parent="StaticCollisions/24" index="0"]
-position = Vector2(-242, 92)
-curve = SubResource("Curve2D_spwae")
-
-[node name="25" parent="StaticCollisions" instance=ExtResource("3_6yxu4")]
-metadata/_edit_lock_ = true
-
-[node name="Path2D" parent="StaticCollisions/25" index="0"]
-position = Vector2(-495, 30)
-curve = SubResource("Curve2D_7qni4")
-
-[node name="26" parent="StaticCollisions" instance=ExtResource("3_6yxu4")]
-metadata/_edit_lock_ = true
-
-[node name="Path2D" parent="StaticCollisions/26" index="0"]
-curve = SubResource("Curve2D_o5k38")
-
-[node name="27" parent="StaticCollisions" instance=ExtResource("3_6yxu4")]
-metadata/_edit_lock_ = true
-
-[node name="Path2D" parent="StaticCollisions/27" index="0"]
-curve = SubResource("Curve2D_cp0bg")
-
-[node name="28" parent="StaticCollisions" instance=ExtResource("3_6yxu4")]
-metadata/_edit_lock_ = true
-
-[node name="Path2D" parent="StaticCollisions/28" index="0"]
-curve = SubResource("Curve2D_4xnuh")
-
-[node name="29" parent="StaticCollisions" instance=ExtResource("3_6yxu4")]
-metadata/_edit_lock_ = true
-
-[node name="Path2D" parent="StaticCollisions/29" index="0"]
-curve = SubResource("Curve2D_we1si")
-
-[node name="30" parent="StaticCollisions" instance=ExtResource("3_6yxu4")]
-metadata/_edit_lock_ = true
-
-[node name="Path2D" parent="StaticCollisions/30" index="0"]
-curve = SubResource("Curve2D_0qpiq")
-
-[node name="31" parent="StaticCollisions" instance=ExtResource("3_6yxu4")]
-metadata/_edit_lock_ = true
-
-[node name="Path2D" parent="StaticCollisions/31" index="0"]
-curve = SubResource("Curve2D_lmmqk")
-
-[node name="32" parent="StaticCollisions" instance=ExtResource("3_6yxu4")]
-metadata/_edit_lock_ = true
-
-[node name="Path2D" parent="StaticCollisions/32" index="0"]
-curve = SubResource("Curve2D_woj5d")
-
-[node name="33" parent="StaticCollisions" instance=ExtResource("3_6yxu4")]
-metadata/_edit_lock_ = true
-
-[node name="Path2D" parent="StaticCollisions/33" index="0"]
-curve = SubResource("Curve2D_43lsh")
-
 [node name="FallingAreas" type="Node" parent="."]
 
-[node name="1" parent="FallingAreas" node_paths=PackedStringArray("signal_bus") instance=ExtResource("6_i5x3v")]
-signal_bus = NodePath("../../SignalBus")
-metadata/_edit_lock_ = true
+[node name="1" type="Sprite2D" parent="FallingAreas"]
+z_index = 1
+position = Vector2(-4641, 4552)
+scale = Vector2(4, 4)
+texture = SubResource("AtlasTexture_itiww")
 
-[node name="Path2D" parent="FallingAreas/1" index="0"]
+[node name="8" parent="FallingAreas/1" node_paths=PackedStringArray("signal_bus") instance=ExtResource("6_i5x3v")]
+position = Vector2(-96.5, -592.25)
+scale = Vector2(0.25, 0.25)
+signal_bus = NodePath("../../../SignalBus")
+
+[node name="Path2D" parent="FallingAreas/1/8" index="0"]
 curve = SubResource("Curve2D_6jp78")
 
-[node name="2" parent="FallingAreas" node_paths=PackedStringArray("signal_bus") instance=ExtResource("6_i5x3v")]
-signal_bus = NodePath("../../SignalBus")
-metadata/_edit_lock_ = true
+[node name="2" type="Sprite2D" parent="FallingAreas"]
+z_index = 1
+position = Vector2(-2927, 5100)
+scale = Vector2(4, 4)
+texture = SubResource("AtlasTexture_3xmou")
 
-[node name="Path2D" parent="FallingAreas/2" index="0"]
+[node name="9" parent="FallingAreas/2" node_paths=PackedStringArray("signal_bus") instance=ExtResource("6_i5x3v")]
+position = Vector2(-48.25, -705.25)
+scale = Vector2(0.25, 0.25)
+signal_bus = NodePath("../../../SignalBus")
+
+[node name="Path2D" parent="FallingAreas/2/9" index="0"]
 curve = SubResource("Curve2D_2wk3x")
 
-[node name="3" parent="FallingAreas" node_paths=PackedStringArray("signal_bus") instance=ExtResource("6_i5x3v")]
-signal_bus = NodePath("../../SignalBus")
-metadata/_edit_lock_ = true
+[node name="3" type="Sprite2D" parent="FallingAreas"]
+z_index = 1
+position = Vector2(-3232, 4626)
+scale = Vector2(4, 4)
+texture = SubResource("AtlasTexture_hm6wd")
 
-[node name="Path2D" parent="FallingAreas/3" index="0"]
+[node name="10" parent="FallingAreas/3" node_paths=PackedStringArray("signal_bus") instance=ExtResource("6_i5x3v")]
+position = Vector2(28, -586.75)
+scale = Vector2(0.25, 0.25)
+signal_bus = NodePath("../../../SignalBus")
+
+[node name="Path2D" parent="FallingAreas/3/10" index="0"]
 curve = SubResource("Curve2D_mnlhw")
 
-[node name="4" parent="FallingAreas" node_paths=PackedStringArray("signal_bus") instance=ExtResource("6_i5x3v")]
-signal_bus = NodePath("../../SignalBus")
-metadata/_edit_lock_ = true
+[node name="4" type="Sprite2D" parent="FallingAreas"]
+z_index = 1
+position = Vector2(-3519, 4963)
+scale = Vector2(4, 4)
+texture = SubResource("AtlasTexture_rxvwk")
 
-[node name="Path2D" parent="FallingAreas/4" index="0"]
+[node name="11" parent="FallingAreas/4" node_paths=PackedStringArray("signal_bus") instance=ExtResource("6_i5x3v")]
+position = Vector2(99.75, -671)
+scale = Vector2(0.25, 0.25)
+signal_bus = NodePath("../../../SignalBus")
+
+[node name="Path2D" parent="FallingAreas/4/11" index="0"]
 curve = SubResource("Curve2D_y7r4v")
 
-[node name="5" parent="FallingAreas" node_paths=PackedStringArray("signal_bus") instance=ExtResource("6_i5x3v")]
-signal_bus = NodePath("../../SignalBus")
-metadata/_edit_lock_ = true
+[node name="5" type="Sprite2D" parent="FallingAreas"]
+position = Vector2(-3777, 4606)
+rotation = 0.0500133
+scale = Vector2(4, 4)
+texture = SubResource("AtlasTexture_b2tbn")
 
-[node name="Path2D" parent="FallingAreas/5" index="0"]
+[node name="12" parent="FallingAreas/5" node_paths=PackedStringArray("signal_bus") instance=ExtResource("6_i5x3v")]
+position = Vector2(134.962, -589.234)
+rotation = -0.0500133
+scale = Vector2(0.25, 0.25)
+signal_bus = NodePath("../../../SignalBus")
+
+[node name="Path2D" parent="FallingAreas/5/12" index="0"]
 curve = SubResource("Curve2D_q6dm1")
 
-[node name="6" parent="FallingAreas" node_paths=PackedStringArray("signal_bus") instance=ExtResource("6_i5x3v")]
-signal_bus = NodePath("../../SignalBus")
-metadata/_edit_lock_ = true
+[node name="6" type="Sprite2D" parent="FallingAreas"]
+z_index = 1
+position = Vector2(-4114, 4731)
+scale = Vector2(4, 4)
+texture = SubResource("AtlasTexture_c2534")
 
-[node name="Path2D" parent="FallingAreas/6" index="0"]
+[node name="13" parent="FallingAreas/6" node_paths=PackedStringArray("signal_bus") instance=ExtResource("6_i5x3v")]
+position = Vector2(248.5, -613)
+scale = Vector2(0.25, 0.25)
+signal_bus = NodePath("../../../SignalBus")
+
+[node name="Path2D" parent="FallingAreas/6/13" index="0"]
 curve = SubResource("Curve2D_fsxml")
 
-[node name="7" parent="FallingAreas" node_paths=PackedStringArray("signal_bus") instance=ExtResource("6_i5x3v")]
-signal_bus = NodePath("../../SignalBus")
-metadata/_edit_lock_ = true
+[node name="7" type="Sprite2D" parent="FallingAreas"]
+z_index = 1
+position = Vector2(-4120, 5232)
+scale = Vector2(4, 4)
+texture = SubResource("AtlasTexture_xus6j")
 
-[node name="Path2D" parent="FallingAreas/7" index="0"]
+[node name="14" parent="FallingAreas/7" node_paths=PackedStringArray("signal_bus") instance=ExtResource("6_i5x3v")]
+position = Vector2(250, -738.25)
+scale = Vector2(0.25, 0.25)
+signal_bus = NodePath("../../../SignalBus")
+
+[node name="Path2D" parent="FallingAreas/7/14" index="0"]
 curve = SubResource("Curve2D_sc8cn")
 
 [node name="EnemyWalkbleArea" type="Node" parent="."]
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="EnemyWalkbleArea"]
-navigation_polygon = SubResource("NavigationPolygon_rneee")
+position = Vector2(821, 1023)
+navigation_polygon = SubResource("NavigationPolygon_our7q")
 script = ExtResource("8_c52k4")
 metadata/_edit_lock_ = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="EnemyWalkbleArea/NavigationRegion2D"]
+position = Vector2(1294, 323)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyWalkbleArea/NavigationRegion2D/StaticBody2D"]
 position = Vector2(919, -868)
@@ -557,57 +239,25 @@ color = Color(0.737255, 0.690196, 0.0980392, 0.368627)
 polygon = PackedVector2Array(888, -1227, 888, -509, 950, -508, 948, -1227)
 
 [node name="smartEnemy" parent="." node_paths=PackedStringArray("target") instance=ExtResource("9_lxlyq")]
+z_index = 3
 position = Vector2(685, -815)
 scale = Vector2(2, 2)
 target = NodePath("../Player")
 
-[connection signal="body_entered" from="FallingAreas/1" to="FallingAreas/1" method="_on_body_entered"]
-[connection signal="body_entered" from="FallingAreas/2" to="FallingAreas/2" method="_on_body_entered"]
-[connection signal="body_entered" from="FallingAreas/3" to="FallingAreas/3" method="_on_body_entered"]
-[connection signal="body_entered" from="FallingAreas/4" to="FallingAreas/4" method="_on_body_entered"]
-[connection signal="body_entered" from="FallingAreas/5" to="FallingAreas/5" method="_on_body_entered"]
-[connection signal="body_entered" from="FallingAreas/6" to="FallingAreas/6" method="_on_body_entered"]
-[connection signal="body_entered" from="FallingAreas/7" to="FallingAreas/7" method="_on_body_entered"]
+[connection signal="body_entered" from="FallingAreas/1/8" to="FallingAreas/1/8" method="_on_body_entered"]
+[connection signal="body_entered" from="FallingAreas/2/9" to="FallingAreas/2/9" method="_on_body_entered"]
+[connection signal="body_entered" from="FallingAreas/3/10" to="FallingAreas/3/10" method="_on_body_entered"]
+[connection signal="body_entered" from="FallingAreas/4/11" to="FallingAreas/4/11" method="_on_body_entered"]
+[connection signal="body_entered" from="FallingAreas/5/12" to="FallingAreas/5/12" method="_on_body_entered"]
+[connection signal="body_entered" from="FallingAreas/6/13" to="FallingAreas/6/13" method="_on_body_entered"]
+[connection signal="body_entered" from="FallingAreas/7/14" to="FallingAreas/7/14" method="_on_body_entered"]
 [connection signal="navigation_polygon_changed" from="EnemyWalkbleArea/NavigationRegion2D" to="smartEnemy" method="_on_navigation_region_2d_navigation_polygon_changed"]
 
 [editable path="Player"]
-[editable path="StaticCollisions/1"]
-[editable path="StaticCollisions/2"]
-[editable path="StaticCollisions/3"]
-[editable path="StaticCollisions/4"]
-[editable path="StaticCollisions/5"]
-[editable path="StaticCollisions/6"]
-[editable path="StaticCollisions/7"]
-[editable path="StaticCollisions/8"]
-[editable path="StaticCollisions/9"]
-[editable path="StaticCollisions/10"]
-[editable path="StaticCollisions/11"]
-[editable path="StaticCollisions/12"]
-[editable path="StaticCollisions/13"]
-[editable path="StaticCollisions/14"]
-[editable path="StaticCollisions/15"]
-[editable path="StaticCollisions/16"]
-[editable path="StaticCollisions/17"]
-[editable path="StaticCollisions/18"]
-[editable path="StaticCollisions/19"]
-[editable path="StaticCollisions/20"]
-[editable path="StaticCollisions/21"]
-[editable path="StaticCollisions/22"]
-[editable path="StaticCollisions/23"]
-[editable path="StaticCollisions/24"]
-[editable path="StaticCollisions/25"]
-[editable path="StaticCollisions/26"]
-[editable path="StaticCollisions/27"]
-[editable path="StaticCollisions/28"]
-[editable path="StaticCollisions/29"]
-[editable path="StaticCollisions/30"]
-[editable path="StaticCollisions/31"]
-[editable path="StaticCollisions/32"]
-[editable path="StaticCollisions/33"]
-[editable path="FallingAreas/1"]
-[editable path="FallingAreas/2"]
-[editable path="FallingAreas/3"]
-[editable path="FallingAreas/4"]
-[editable path="FallingAreas/5"]
-[editable path="FallingAreas/6"]
-[editable path="FallingAreas/7"]
+[editable path="FallingAreas/1/8"]
+[editable path="FallingAreas/2/9"]
+[editable path="FallingAreas/3/10"]
+[editable path="FallingAreas/4/11"]
+[editable path="FallingAreas/5/12"]
+[editable path="FallingAreas/6/13"]
+[editable path="FallingAreas/7/14"]
