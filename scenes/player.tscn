@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://c1pefes17fnxn"]
+[gd_scene load_steps=35 format=3 uid="uid://c1pefes17fnxn"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_om4em"]
 [ext_resource type="Texture2D" uid="uid://bmayijehjocqs" path="res://assets/Lantern__Directions_02.png" id="2_oyf36"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://scripts/player/player_idle_state.gd" id="5_1ajjk"]
 [ext_resource type="Script" path="res://scripts/player/player_deceleration_state.gd" id="6_ua5j8"]
 [ext_resource type="Script" path="res://scripts/state.gd" id="9_3jan3"]
+[ext_resource type="Script" path="res://scripts/player/player_boost_state.gd" id="10_d7if8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nuvys"]
 atlas = ExtResource("2_oyf36")
@@ -237,5 +238,8 @@ player = NodePath("../..")
 
 [node name="PlayerNoInputState" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("9_3jan3")
+
+[node name="PlayerBoostState" type="Node" parent="PlayerStateMachine"]
+script = ExtResource("10_d7if8")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
