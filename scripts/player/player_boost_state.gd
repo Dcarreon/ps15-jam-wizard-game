@@ -1,11 +1,25 @@
 extends "res://scripts/state.gd"
 
+@export var player: CharacterBody2D
+@onready var state_machine : StateMachine = %PlayerStateMachine
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	set_process(false)
+	set_physics_process(false)
+	set_process_input(false)
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _input(event):
 	pass
+
+func _process(delta: float) -> void:
+	player.move_and_collide(player.velocity * delta)
+
+func _enter_state() -> void:
+	set_process(true)
+	set_physics_process(true)
+	set_process_input(true)
+
+func _exit_state() -> void:
+	set_process(false)
+	set_physics_process(false)
+	set_process_input(false)
