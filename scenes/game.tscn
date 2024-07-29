@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dphea4wrg5oig"]
+[gd_scene load_steps=28 format=3 uid="uid://dphea4wrg5oig"]
 
 [ext_resource type="Script" path="res://scripts/level/game_manager.gd" id="1_cjq3u"]
 [ext_resource type="Script" path="res://scripts/level/signal_bus.gd" id="1_irbs0"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://japnt54hq338" path="res://assets/Pit_Sprite_Sheet.png" id="8_lj00k"]
 [ext_resource type="PackedScene" uid="uid://d4bksgen358x4" path="res://scenes/prototype_smart_enemy.tscn" id="9_lxlyq"]
 [ext_resource type="Script" path="res://scripts/level/road_boundry.gd" id="10_crxo0"]
+[ext_resource type="PackedScene" uid="uid://hxinu1aco5mr" path="res://scenes/alchemy_attack.tscn" id="11_aohqk"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_itiww"]
 atlas = ExtResource("8_lj00k")
@@ -112,7 +113,7 @@ metadata/_edit_lock_ = true
 
 [node name="Player" parent="." instance=ExtResource("1_xwa3k")]
 z_index = 2
-position = Vector2(-3370, 2795)
+position = Vector2(202, 290)
 
 [node name="AnimatedSprite2D" parent="Player" index="0"]
 animation = &"down"
@@ -358,7 +359,19 @@ polygon = PackedVector2Array(888, -1227, 888, -509, 950, -508, 948, -1227)
 z_index = 3
 position = Vector2(685, -815)
 scale = Vector2(2, 2)
+max_speed = 10.0
 target = NodePath("../Player")
+
+[node name="AlchemyAttack" parent="." node_paths=PackedStringArray("_target") instance=ExtResource("11_aohqk")]
+_target = NodePath("../smartEnemy")
+
+[node name="AlchemyAttack2" parent="." node_paths=PackedStringArray("_target") instance=ExtResource("11_aohqk")]
+position = Vector2(1278, 468)
+_target = NodePath("../smartEnemy")
+
+[node name="AlchemyAttack3" parent="." node_paths=PackedStringArray("_target") instance=ExtResource("11_aohqk")]
+position = Vector2(1166, -354)
+_target = NodePath("../smartEnemy")
 
 [connection signal="body_entered" from="FallingAreas/1/8" to="FallingAreas/1/8" method="_on_body_entered"]
 [connection signal="body_entered" from="FallingAreas/11/8" to="FallingAreas/11/8" method="_on_body_entered"]
