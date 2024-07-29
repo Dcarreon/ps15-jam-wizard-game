@@ -14,5 +14,5 @@ func _process(delta: float) -> void:
 	
 func _on_area_entered(body: Node) -> void:
 	hide()
-	body.emit_signal("hit")
+	body.get_parent().emit_signal("hit")
 	queue_free()

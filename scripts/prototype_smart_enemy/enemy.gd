@@ -165,7 +165,6 @@ func get_best_direction(desired_direction : Vector2):
 	#print("direction: ", directions[bigger_index])
 	return directions[bigger_index]
 
-
 func _on_hit() -> void:
 	self.health -= 1
 	if self.health < 1:
