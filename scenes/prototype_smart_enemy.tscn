@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://d4bksgen358x4"]
+[gd_scene load_steps=14 format=3 uid="uid://d4bksgen358x4"]
 
 [ext_resource type="Script" path="res://scripts/prototype_smart_enemy/enemy.gd" id="1_fp571"]
 [ext_resource type="Texture2D" uid="uid://chh8payonmbu5" path="res://assets/Shadow_Beast_Sprite.png" id="2_1rasx"]
@@ -37,6 +37,10 @@ animations = [{
 "name": &"Idle",
 "speed": 5.0
 }]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tsenq"]
+radius = 40.75
+height = 122.0
 
 [node name="Enemy" type="CharacterBody2D"]
 scale = Vector2(4, 4)
@@ -95,4 +99,13 @@ position = Vector2(11.75, -17.25)
 sprite_frames = SubResource("SpriteFrames_emmn4")
 animation = &"Back"
 
+[node name="BodyCollider" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BodyCollider"]
+position = Vector2(1.5, -31.75)
+shape = SubResource("CapsuleShape2D_tsenq")
+
+[connection signal="hit" from="." to="." method="_on_hit"]
 [connection signal="ready" from="RayDirection" to="RayDirection" method="_on_ready"]
