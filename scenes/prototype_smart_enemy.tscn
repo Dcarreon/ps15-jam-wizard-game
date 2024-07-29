@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://d4bksgen358x4"]
+[gd_scene load_steps=13 format=3 uid="uid://d4bksgen358x4"]
 
 [ext_resource type="Script" path="res://scripts/prototype_smart_enemy/enemy.gd" id="1_fp571"]
+[ext_resource type="Texture2D" uid="uid://chh8payonmbu5" path="res://assets/Shadow_Beast_Sprite.png" id="2_1rasx"]
 [ext_resource type="Script" path="res://scripts/prototype_smart_enemy/enemy_ray_cast_2d.gd" id="2_ah3t5"]
 [ext_resource type="Script" path="res://scripts/prototype_smart_enemy/enemy_state_machine.gd" id="3_bmoa3"]
 [ext_resource type="Script" path="res://scripts/prototype_smart_enemy/enemy_wander_state.gd" id="4_8fx22"]
@@ -9,7 +10,33 @@
 [ext_resource type="Script" path="res://scripts/util/ray_direction_setup.gd" id="7_o8o6u"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_au13p"]
-radius = 51.0098
+radius = 45.7609
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dia2s"]
+atlas = ExtResource("2_1rasx")
+region = Rect2(4.76, 8.829, 233, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e8qo5"]
+atlas = ExtResource("2_1rasx")
+region = Rect2(4.76, 174, 233, 150)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_emmn4"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"Back",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"Front",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
 
 [node name="Enemy" type="CharacterBody2D"]
 scale = Vector2(4, 4)
@@ -18,18 +45,23 @@ wall_min_slide_angle = 0.0
 script = ExtResource("1_fp571")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(4.25, 2.25)
 shape = SubResource("CircleShape2D_au13p")
 
-[node name="Polygon2D" type="Polygon2D" parent="."]
-color = Color(0.235816, 0.0160071, 0.391513, 1)
-offset = Vector2(-50, -50)
-polygon = PackedVector2Array(0, 0, 100, 0, 100, 100, 0, 100)
+[node name="Sprites" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
 
-[node name="Polygon2D" type="Polygon2D" parent="Polygon2D"]
-position = Vector2(50, 0)
-color = Color(1, 0.176471, 0.113725, 1)
-offset = Vector2(-105, -52)
-polygon = PackedVector2Array(116, 20, 116, 84, 94, 84, 94, 20)
+[node name="Front" type="Sprite2D" parent="Sprites"]
+visible = false
+position = Vector2(-0.25, 0.25)
+texture = SubResource("AtlasTexture_dia2s")
+offset = Vector2(15.25, -21)
+
+[node name="Back" type="Sprite2D" parent="Sprites"]
+visible = false
+position = Vector2(-0.25, 0.25)
+texture = SubResource("AtlasTexture_e8qo5")
+offset = Vector2(15.25, -21)
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 target_position = Vector2(96, 78)
@@ -51,12 +83,16 @@ script = ExtResource("6_wmypl")
 target_desired_distance = 60.0
 avoidance_layers = 2
 avoidance_mask = 2
-debug_enabled = true
 
 [node name="Timer" type="Timer" parent="NavigationAgent2D"]
 
 [node name="RayDirection" type="Node2D" parent="."]
 script = ExtResource("7_o8o6u")
 number_of_rays = 32
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(11.75, -17.25)
+sprite_frames = SubResource("SpriteFrames_emmn4")
+animation = &"Idle"
 
 [connection signal="ready" from="RayDirection" to="RayDirection" method="_on_ready"]
