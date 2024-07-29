@@ -2,7 +2,6 @@ class_name smartEnemy
 extends CharacterBody2D
 
 #@onready var sprite : AnimatedSprite2D = $AnimatedSprite2D
-@onready var sprite : Polygon2D = $Polygon2D
 @onready var ray_cast : RayCast2D = $RayCast2D
 @onready var collision : CollisionShape2D = $CollisionShape2D
 
@@ -18,8 +17,12 @@ extends CharacterBody2D
 @export var vision_angle : float = 45
 @export var hearing_range : float = 1000
 @export var target : CharacterBody2D
-@export var attack_range : float = 20
+@export var attack_range : float = 60
 @export var target_memory : float = 2
+
+@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+@onready var sprites: Node2D = $Sprites
+
 
 var direction = Vector2.ZERO
 var origin : Vector2
@@ -29,6 +32,10 @@ func _ready() -> void:
 	ray_cast.scale = ray_cast.scale / scale
 	enemy_wander_state.found_target.connect(state_machine._change_state.bind(enemy_follow_state))
 	enemy_follow_state.lost_target.connect(state_machine._change_state.bind(enemy_wander_state))
+
+	animated_sprite_2d.sprite_frames.add_frame("Front", sprites.get_node("Front").texture, 1, -1)
+	animated_sprite_2d.sprite_frames.add_frame("Back", sprites.get_node("Back").texture, 1, -1)
+	
 
 func _process(delta: float) -> void:
 	#queue_redraw()
@@ -43,23 +50,14 @@ func _physics_process(_delta: float) -> void:
 		self.ray_cast.target_position = (target.global_position - global_position)
 		#print(ray_cast.target_position.distance_to(ray_cast.position))
 
-func _look_at(_direction : Vector2, _delta : float):
-	var desired_angle = get_global_position().angle_to_point(_direction)
-	var current_angle = lerp_angle(sprite.rotation, desired_angle, pow(max_speed, 0.008))
-	collision.rotation = current_angle
-	sprite.rotation = current_angle
-	
 func sense_target():
-	var vector_to_target = (target.global_position - self.global_position).normalized()
-	var front = Vector2.from_angle(sprite.rotation).normalized()
-	var angle_to_target = front.angle_to(vector_to_target)
+	#var vector_to_target = (target.global_position - self.global_position).normalized()
 	
 	var target_distance = ray_cast.target_position.distance_to(ray_cast.position)
 	#print(rad_to_deg(angle_to_target))
 	# can see the target
 	if target_distance < vision_range and not ray_cast.is_colliding():
-		if angle_to_target < deg_to_rad(vision_angle) and angle_to_target > deg_to_rad(-(vision_angle)):
-			return true
+		return true
 	# can "feel/hear" the target
 	if target_distance < hearing_range:
 		return true

@@ -49,19 +49,29 @@ func _physics_process(delta):
 		if target_lost_timer >= actor.target_memory:
 			lost_target.emit()
 			return
-				
-	#print(interest_array)
-	#print(danger_array)
-	#print(context_array)	
 		
 	if navigation_agent.is_target_reached():
 		navigation_agent.set_velocity(Vector2.ZERO)
 		
 func _process(delta: float) -> void:
 	var desired_velocity : Vector2 = await actor.get_best_direction(nav_path_next_pos) * actor.max_speed
+	
+	var move_angle = 1;
+	if desired_velocity.is_equal_approx(Vector2.ZERO):
+		move_angle = lerp_angle(actor.velocity.normalized().angle(), desired_velocity.normalized().angle(), 0.5)
+		print(move_angle)
+	if move_angle >= 0:
+		actor.animated_sprite_2d.play("Front")
+	else:
+		actor.animated_sprite_2d.play("Back")
+		
 	var steering_force = desired_velocity - actor.velocity
 	actor.velocity = actor.velocity + (steering_force * 12 * delta)
-	actor.move_and_collide(actor.velocity * delta)
+	
+	if not navigation_agent.is_target_reached():
+		actor.move_and_collide(actor.velocity * delta)
+	else:
+		actor.move_and_collide(lerp(actor.velocity, Vector2.ZERO, 0.8) * delta)
 
 func target_setup():
 	await get_tree().physics_frame
@@ -72,7 +82,7 @@ func target_setup():
 func _enter_state() -> void:
 	var actor_radius = actor.collision.shape.radius * actor.scale.x
 	var target_radius = actor.target.collision_object.shape.radius * actor.target.scale.x
-	navigation_agent.target_desired_distance = actor_radius + target_radius + 20
+	navigation_agent.target_desired_distance = actor_radius + target_radius + actor.attack_range
 	
 	target_lost_timer = 0
 	navigation_agent.connect("velocity_computed", Callable(self, "_on_velocity_computed"))
