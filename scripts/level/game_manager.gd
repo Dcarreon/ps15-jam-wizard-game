@@ -12,4 +12,4 @@ func _on_falling_area_entered(body: Node2D):
 	print("game manager falling area script")
 	if body.name == "Player":
 		print("body identified as Player")
-		player._player_damaged(0)
+		player._player_damaged(player.damage_type.FALLING)
