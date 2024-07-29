@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://scripts/level/game_manager.gd" id="1_cjq3u"]
 [ext_resource type="Script" path="res://scripts/level/signal_bus.gd" id="1_irbs0"]
 [ext_resource type="PackedScene" uid="uid://c1pefes17fnxn" path="res://scenes/player.tscn" id="1_xwa3k"]
-[ext_resource type="Texture2D" uid="uid://cgwjidnym3dhx" path="res://assets/Map_Textured_01_Road.png" id="3_seh6e"]
-[ext_resource type="Texture2D" uid="uid://e7q8smpdv4s6" path="res://assets/Map_Textured_01.png" id="5_pe1rk"]
+[ext_resource type="Texture2D" uid="uid://dx3t7fctyiirw" path="res://assets/Map_Textured_04_Road.png" id="3_hv3j5"]
+[ext_resource type="Texture2D" uid="uid://bdhiqb2bftqbk" path="res://assets/Map_Textured_04.png" id="5_okwpx"]
 [ext_resource type="PackedScene" uid="uid://b8m0ax8fv41b0" path="res://scenes/falling_area.tscn" id="6_i5x3v"]
 [ext_resource type="Script" path="res://scripts/enemy/navigation_region.gd" id="8_c52k4"]
 [ext_resource type="Texture2D" uid="uid://japnt54hq338" path="res://assets/Pit_Sprite_Sheet.png" id="8_lj00k"]
@@ -99,20 +99,20 @@ player = NodePath("../Player")
 [node name="SignalBus" type="Node" parent="."]
 script = ExtResource("1_irbs0")
 
-[node name="Sprite2D2" type="Sprite2D" parent="."]
+[node name="Road" type="Sprite2D" parent="."]
 scale = Vector2(4, 4)
-texture = ExtResource("3_seh6e")
+texture = ExtResource("3_hv3j5")
 script = ExtResource("10_crxo0")
 metadata/_edit_lock_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Map" type="Sprite2D" parent="."]
 scale = Vector2(4, 4)
-texture = ExtResource("5_pe1rk")
+texture = ExtResource("5_okwpx")
 metadata/_edit_lock_ = true
 
 [node name="Player" parent="." instance=ExtResource("1_xwa3k")]
 z_index = 2
-position = Vector2(-3386, 2756)
+position = Vector2(-3370, 2795)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position_smoothing_enabled = true
