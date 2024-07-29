@@ -93,6 +93,6 @@ number_of_rays = 32
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(11.75, -17.25)
 sprite_frames = SubResource("SpriteFrames_emmn4")
-animation = &"Idle"
+animation = &"Back"
 
 [connection signal="ready" from="RayDirection" to="RayDirection" method="_on_ready"]
