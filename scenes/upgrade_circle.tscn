@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cptg2vcr0cagh"]
+
+[ext_resource type="Texture2D" uid="uid://dm7n7upve3cor" path="res://assets/Damage_circles.png" id="1_rhhwg"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5jrnf"]
+radius = 26.1725
+
+[node name="UpgradeCircle" type="Area2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 8)
+texture = ExtResource("1_rhhwg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_5jrnf")
