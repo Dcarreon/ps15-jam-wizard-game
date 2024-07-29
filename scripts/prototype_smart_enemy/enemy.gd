@@ -1,6 +1,8 @@
 class_name smartEnemy
 extends CharacterBody2D
 
+signal hit
+
 #@onready var sprite : AnimatedSprite2D = $AnimatedSprite2D
 @onready var ray_cast : RayCast2D = $RayCast2D
 @onready var collision : CollisionShape2D = $CollisionShape2D
@@ -19,12 +21,12 @@ extends CharacterBody2D
 @export var target : CharacterBody2D
 @export var attack_range : float = 60
 @export var target_memory : float = 2
+@export var health : int = 5
+
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var sprites: Node2D = $Sprites
 
-
-var direction = Vector2.ZERO
 var origin : Vector2
 
 func _ready() -> void:
@@ -162,3 +164,9 @@ func get_best_direction(desired_direction : Vector2):
 	#print(context_array, " desired index: ", bigger_index)	
 	#print("direction: ", directions[bigger_index])
 	return directions[bigger_index]
+
+
+func _on_hit() -> void:
+	self.health -= 1
+	if self.health < 1:
+		queue_free()

@@ -18,16 +18,13 @@ func _process(delta: float) -> void:
 	var desired_velocity : Vector2 = await actor.get_best_direction(nav_path_next_pos) * (actor.max_speed / 2)
 	var steering_force = desired_velocity - actor.velocity
 	var move_angle = 1
-	if desired_velocity != Vector2.ZERO:
-		move_angle = lerp_angle(move_angle, desired_velocity.normalized().angle(), 0.0003)
-		print(move_angle)
-	if move_angle >= 0 :
+	actor.velocity = actor.velocity + (steering_force*6) * delta
+	if not navigation_agent.is_target_reached():
+		actor.move_and_collide(actor.velocity * delta)
+	if actor.velocity.x < 0:
 		actor.animated_sprite_2d.play("Front")
 	else:
 		actor.animated_sprite_2d.play("Back")
-		
-	actor.velocity = actor.velocity + (steering_force*6) * delta 
-	actor.move_and_collide(actor.velocity * delta)
 	
 func _physics_process(_delta: float) -> void:	
 	if first_execution:
@@ -68,5 +65,5 @@ func target_setup():
 	navigation_agent.target_position = actor.origin
 	
 func _on_target_reached():
-	pass
+	actor.velocity = Vector2.ZERO
 	#navigation_agent.target_position = Vector2(randf_range(-1, 1), randf_range(-1, 1)) * actor.max_speed
