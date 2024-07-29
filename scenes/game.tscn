@@ -112,7 +112,7 @@ metadata/_edit_lock_ = true
 
 [node name="Player" parent="." instance=ExtResource("1_xwa3k")]
 z_index = 2
-position = Vector2(-4426, 4699)
+position = Vector2(-3386, 2756)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position_smoothing_enabled = true
@@ -132,6 +132,20 @@ scale = Vector2(0.25, 0.25)
 signal_bus = NodePath("../../../SignalBus")
 
 [node name="Path2D" parent="FallingAreas/1/8" index="0"]
+curve = SubResource("Curve2D_6jp78")
+
+[node name="11" type="Sprite2D" parent="FallingAreas"]
+z_index = 1
+position = Vector2(-4575, -3002)
+scale = Vector2(4, 4)
+texture = SubResource("AtlasTexture_itiww")
+
+[node name="8" parent="FallingAreas/11" node_paths=PackedStringArray("signal_bus") instance=ExtResource("6_i5x3v")]
+position = Vector2(-96.5, -592.25)
+scale = Vector2(0.25, 0.25)
+signal_bus = NodePath("../../../SignalBus")
+
+[node name="Path2D" parent="FallingAreas/11/8" index="0"]
 curve = SubResource("Curve2D_6jp78")
 
 [node name="2" type="Sprite2D" parent="FallingAreas"]
@@ -162,6 +176,20 @@ signal_bus = NodePath("../../../SignalBus")
 [node name="Path2D" parent="FallingAreas/3/10" index="0"]
 curve = SubResource("Curve2D_mnlhw")
 
+[node name="10" type="Sprite2D" parent="FallingAreas"]
+z_index = 1
+position = Vector2(-3157, -1922)
+scale = Vector2(4, 4)
+texture = SubResource("AtlasTexture_hm6wd")
+
+[node name="10" parent="FallingAreas/10" node_paths=PackedStringArray("signal_bus") instance=ExtResource("6_i5x3v")]
+position = Vector2(28, -586.75)
+scale = Vector2(0.25, 0.25)
+signal_bus = NodePath("../../../SignalBus")
+
+[node name="Path2D" parent="FallingAreas/10/10" index="0"]
+curve = SubResource("Curve2D_mnlhw")
+
 [node name="4" type="Sprite2D" parent="FallingAreas"]
 z_index = 1
 position = Vector2(-3519, 4963)
@@ -174,6 +202,48 @@ scale = Vector2(0.25, 0.25)
 signal_bus = NodePath("../../../SignalBus")
 
 [node name="Path2D" parent="FallingAreas/4/11" index="0"]
+curve = SubResource("Curve2D_y7r4v")
+
+[node name="15" type="Sprite2D" parent="FallingAreas"]
+z_index = 1
+position = Vector2(-130, -799)
+scale = Vector2(4, 4)
+texture = SubResource("AtlasTexture_rxvwk")
+
+[node name="11" parent="FallingAreas/15" node_paths=PackedStringArray("signal_bus") instance=ExtResource("6_i5x3v")]
+position = Vector2(99.75, -671)
+scale = Vector2(0.25, 0.25)
+signal_bus = NodePath("../../../SignalBus")
+
+[node name="Path2D" parent="FallingAreas/15/11" index="0"]
+curve = SubResource("Curve2D_y7r4v")
+
+[node name="8" type="Sprite2D" parent="FallingAreas"]
+z_index = 1
+position = Vector2(-4087, 123)
+scale = Vector2(4, 4)
+texture = SubResource("AtlasTexture_rxvwk")
+
+[node name="11" parent="FallingAreas/8" node_paths=PackedStringArray("signal_bus") instance=ExtResource("6_i5x3v")]
+position = Vector2(99.75, -671)
+scale = Vector2(0.25, 0.25)
+signal_bus = NodePath("../../../SignalBus")
+
+[node name="Path2D" parent="FallingAreas/8/11" index="0"]
+curve = SubResource("Curve2D_y7r4v")
+
+[node name="9" type="Sprite2D" parent="FallingAreas"]
+z_index = 1
+position = Vector2(-3233, -774)
+scale = Vector2(4, 4)
+texture = SubResource("AtlasTexture_rxvwk")
+
+[node name="11" parent="FallingAreas/9" node_paths=PackedStringArray("signal_bus") instance=ExtResource("6_i5x3v")]
+position = Vector2(99.75, -671)
+scale = Vector2(0.25, 0.25)
+signal_bus = NodePath("../../../SignalBus")
+
+[node name="Path2D" parent="FallingAreas/9/11" index="0"]
 curve = SubResource("Curve2D_y7r4v")
 
 [node name="5" type="Sprite2D" parent="FallingAreas"]
@@ -191,6 +261,21 @@ signal_bus = NodePath("../../../SignalBus")
 [node name="Path2D" parent="FallingAreas/5/12" index="0"]
 curve = SubResource("Curve2D_q6dm1")
 
+[node name="14" type="Sprite2D" parent="FallingAreas"]
+position = Vector2(1828, -2666)
+rotation = 0.0500133
+scale = Vector2(4, 4)
+texture = SubResource("AtlasTexture_b2tbn")
+
+[node name="12" parent="FallingAreas/14" node_paths=PackedStringArray("signal_bus") instance=ExtResource("6_i5x3v")]
+position = Vector2(134.962, -589.234)
+rotation = -0.0500133
+scale = Vector2(0.25, 0.25)
+signal_bus = NodePath("../../../SignalBus")
+
+[node name="Path2D" parent="FallingAreas/14/12" index="0"]
+curve = SubResource("Curve2D_q6dm1")
+
 [node name="6" type="Sprite2D" parent="FallingAreas"]
 z_index = 1
 position = Vector2(-4114, 4731)
@@ -205,6 +290,20 @@ signal_bus = NodePath("../../../SignalBus")
 [node name="Path2D" parent="FallingAreas/6/13" index="0"]
 curve = SubResource("Curve2D_fsxml")
 
+[node name="13" type="Sprite2D" parent="FallingAreas"]
+z_index = 1
+position = Vector2(2357, 13)
+scale = Vector2(4, 4)
+texture = SubResource("AtlasTexture_c2534")
+
+[node name="13" parent="FallingAreas/13" node_paths=PackedStringArray("signal_bus") instance=ExtResource("6_i5x3v")]
+position = Vector2(248.5, -613)
+scale = Vector2(0.25, 0.25)
+signal_bus = NodePath("../../../SignalBus")
+
+[node name="Path2D" parent="FallingAreas/13/13" index="0"]
+curve = SubResource("Curve2D_fsxml")
+
 [node name="7" type="Sprite2D" parent="FallingAreas"]
 z_index = 1
 position = Vector2(-4120, 5232)
@@ -217,6 +316,20 @@ scale = Vector2(0.25, 0.25)
 signal_bus = NodePath("../../../SignalBus")
 
 [node name="Path2D" parent="FallingAreas/7/14" index="0"]
+curve = SubResource("Curve2D_sc8cn")
+
+[node name="12" type="Sprite2D" parent="FallingAreas"]
+z_index = 1
+position = Vector2(1312, 884)
+scale = Vector2(4, 4)
+texture = SubResource("AtlasTexture_xus6j")
+
+[node name="14" parent="FallingAreas/12" node_paths=PackedStringArray("signal_bus") instance=ExtResource("6_i5x3v")]
+position = Vector2(250, -738.25)
+scale = Vector2(0.25, 0.25)
+signal_bus = NodePath("../../../SignalBus")
+
+[node name="Path2D" parent="FallingAreas/12/14" index="0"]
 curve = SubResource("Curve2D_sc8cn")
 
 [node name="EnemyWalkbleArea" type="Node" parent="."]
@@ -245,19 +358,35 @@ scale = Vector2(2, 2)
 target = NodePath("../Player")
 
 [connection signal="body_entered" from="FallingAreas/1/8" to="FallingAreas/1/8" method="_on_body_entered"]
+[connection signal="body_entered" from="FallingAreas/11/8" to="FallingAreas/11/8" method="_on_body_entered"]
 [connection signal="body_entered" from="FallingAreas/2/9" to="FallingAreas/2/9" method="_on_body_entered"]
 [connection signal="body_entered" from="FallingAreas/3/10" to="FallingAreas/3/10" method="_on_body_entered"]
+[connection signal="body_entered" from="FallingAreas/10/10" to="FallingAreas/10/10" method="_on_body_entered"]
 [connection signal="body_entered" from="FallingAreas/4/11" to="FallingAreas/4/11" method="_on_body_entered"]
+[connection signal="body_entered" from="FallingAreas/15/11" to="FallingAreas/15/11" method="_on_body_entered"]
+[connection signal="body_entered" from="FallingAreas/8/11" to="FallingAreas/8/11" method="_on_body_entered"]
+[connection signal="body_entered" from="FallingAreas/9/11" to="FallingAreas/9/11" method="_on_body_entered"]
 [connection signal="body_entered" from="FallingAreas/5/12" to="FallingAreas/5/12" method="_on_body_entered"]
+[connection signal="body_entered" from="FallingAreas/14/12" to="FallingAreas/14/12" method="_on_body_entered"]
 [connection signal="body_entered" from="FallingAreas/6/13" to="FallingAreas/6/13" method="_on_body_entered"]
+[connection signal="body_entered" from="FallingAreas/13/13" to="FallingAreas/13/13" method="_on_body_entered"]
 [connection signal="body_entered" from="FallingAreas/7/14" to="FallingAreas/7/14" method="_on_body_entered"]
+[connection signal="body_entered" from="FallingAreas/12/14" to="FallingAreas/12/14" method="_on_body_entered"]
 [connection signal="navigation_polygon_changed" from="EnemyWalkbleArea/NavigationRegion2D" to="smartEnemy" method="_on_navigation_region_2d_navigation_polygon_changed"]
 
 [editable path="Player"]
 [editable path="FallingAreas/1/8"]
+[editable path="FallingAreas/11/8"]
 [editable path="FallingAreas/2/9"]
 [editable path="FallingAreas/3/10"]
+[editable path="FallingAreas/10/10"]
 [editable path="FallingAreas/4/11"]
+[editable path="FallingAreas/15/11"]
+[editable path="FallingAreas/8/11"]
+[editable path="FallingAreas/9/11"]
 [editable path="FallingAreas/5/12"]
+[editable path="FallingAreas/14/12"]
 [editable path="FallingAreas/6/13"]
+[editable path="FallingAreas/13/13"]
 [editable path="FallingAreas/7/14"]
+[editable path="FallingAreas/12/14"]
