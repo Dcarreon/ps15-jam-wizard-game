@@ -10,6 +10,9 @@ extends CharacterBody2D
 @onready var bounce_sfx : AudioStreamPlayer = $PlayerSFX/Bounce
 @onready var falling_sfx : AudioStreamPlayer = $PlayerSFX/Falling
 
+#Fire Particles
+@onready var gpu_particles_2d: GPUParticles2D = $GPUParticles2D
+
 @export var health_gui_array : Array[PackedScene]
 @export var max_speed : float = 10000
 @export var acceleration : float = 500
@@ -74,9 +77,11 @@ func _player_damaged(type: damage_type) -> void:
 			health = health - 1
 			falling_sfx.play(2.15)
 			sprite.play("falling")
+			gpu_particles_2d.hide()
 
 func _respawn() -> void:
 	global_position = spawn_point
+	gpu_particles_2d.visible = true
 	state_machine._change_state(state_machine.fly_state)
 
 	if health < 1:
