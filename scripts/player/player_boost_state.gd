@@ -22,6 +22,11 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	player.velocity = player.velocity.move_toward(direction * boost_speed, boost_accel * delta)
 
+	if player.collision:
+		var collider = player.collision.get_collider()
+		if collider.is_in_group("static_collisions"):
+			state_machine._change_state(state_machine.fly_state)
+
 func _enter_state() -> void:
 	set_process(true)
 	set_physics_process(true)

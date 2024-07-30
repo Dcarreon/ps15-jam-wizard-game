@@ -18,3 +18,4 @@ func _on_falling_area_entered(body: Node2D):
 func _on_boost_upgrade_entered(body: Node2D):
 	if body.name == "Player":
 		player.boost_upgrade = true
+		player.spawn_point = body.global_position

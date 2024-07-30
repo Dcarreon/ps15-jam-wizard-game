@@ -67,6 +67,9 @@ func _respawn() -> void:
 	global_position = spawn_point
 	state_machine._change_state(state_machine.fly_state)
 
+	if health < 1:
+		get_tree().reload_current_scene()
+
 func _on_animated_sprite_2d_animation_finished() ->void:
 	var anim_name : String = sprite.animation
 	match anim_name:
