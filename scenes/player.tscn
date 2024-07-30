@@ -244,7 +244,7 @@ stream_0/stream = ExtResource("11_5nvke")
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(-3, -17)
 script = ExtResource("1_om4em")
-health_gui_array = Array[PackedScene]([ExtResource("2_aynrh"), ExtResource("2_aynrh"), ExtResource("2_aynrh")])
+health_gui = ExtResource("2_aynrh")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 position = Vector2(3, -1)

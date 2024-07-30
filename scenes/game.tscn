@@ -383,9 +383,14 @@ _target = NodePath("../smartEnemy")
 position = Vector2(1166, -354)
 _target = NodePath("../smartEnemy")
 
-[node name="UpgradeCircle" parent="Play" node_paths=PackedStringArray("signal_bus") instance=ExtResource("12_ubij5")]
-position = Vector2(-3672, 3744)
+[node name="BoostUpgrade" parent="Play" node_paths=PackedStringArray("signal_bus") instance=ExtResource("12_ubij5")]
+position = Vector2(-4433, 4412)
 signal_bus = NodePath("../../SignalBus")
+
+[node name="HealthUpgrade" parent="Play" node_paths=PackedStringArray("signal_bus") instance=ExtResource("12_ubij5")]
+position = Vector2(-3676, 3730)
+signal_bus = NodePath("../../SignalBus")
+upgrade = 1
 
 [node name="MainUI" parent="." node_paths=PackedStringArray("game_timer", "signal_bus") instance=ExtResource("13_smplt")]
 game_timer = NodePath("../GameTimer")
@@ -411,7 +416,8 @@ wait_time = 600.0
 [connection signal="body_entered" from="Play/FallingAreas/7/14" to="Play/FallingAreas/7/14" method="_on_body_entered"]
 [connection signal="body_entered" from="Play/FallingAreas/12/14" to="Play/FallingAreas/12/14" method="_on_body_entered"]
 [connection signal="navigation_polygon_changed" from="Play/EnemyWalkbleArea/NavigationRegion2D" to="Play/smartEnemy" method="_on_navigation_region_2d_navigation_polygon_changed"]
-[connection signal="body_entered" from="Play/UpgradeCircle" to="Play/UpgradeCircle" method="_on_body_entered"]
+[connection signal="body_entered" from="Play/BoostUpgrade" to="Play/BoostUpgrade" method="_on_body_entered"]
+[connection signal="body_entered" from="Play/HealthUpgrade" to="Play/HealthUpgrade" method="_on_body_entered"]
 
 [editable path="Play/Player"]
 [editable path="Play/FallingAreas/1/8"]

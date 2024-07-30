@@ -13,7 +13,7 @@ extends CharacterBody2D
 #Fire Particles
 @onready var gpu_particles_2d: GPUParticles2D = $GPUParticles2D
 
-@export var health_gui_array : Array[PackedScene]
+@export var health_gui : PackedScene
 @export var max_speed : float = 10000
 @export var acceleration : float = 500
 @export var deceleration : float  = 0.05 # Percentage
@@ -35,8 +35,8 @@ func _ready() -> void:
 	boost_upgrade = false
 	spawn_point = global_position
 
-	for gui in health_gui_array:
-		var new_gui = gui.instantiate()
+	for i in max_health:
+		var new_gui = health_gui.instantiate()
 		health_container.add_child(new_gui)
 
 func _process(delta: float) -> void:
@@ -93,11 +93,19 @@ func _on_animated_sprite_2d_animation_finished() ->void:
 		"falling":
 			_respawn()
 
-func _boost_state() -> void:
-	if boost_upgrade:
-		state_machine._change_state(state_machine.boost_state)	
-
 func _remove_one_health_gui() -> void:
 	for gui in health_container.get_children():
 		health_container.remove_child(gui)
 		break
+
+func _boost_state() -> void:
+	if boost_upgrade:
+		state_machine._change_state(state_machine.boost_state)	
+
+func _health_upgrade() -> void:
+	max_health = 5
+
+	while health < 5:
+		health = health + 1
+		var new_gui = health_gui.instantiate()
+		health_container.add_child(new_gui)
