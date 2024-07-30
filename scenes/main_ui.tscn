@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://tmvxbpwun4o5"]
+
+[ext_resource type="Script" path="res://scripts/ui/main_ui.gd" id="1_ncekq"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_tsk1s"]
+font_size = 30
+outline_size = 2
+outline_color = Color(0.988235, 0.988235, 0.513726, 1)
+
+[node name="CanvasLayer" type="CanvasLayer"]
+layer = 5
+script = ExtResource("1_ncekq")
+
+[node name="TimerLabel" type="Label" parent="."]
+offset_left = 948.0
+offset_top = 8.0
+offset_right = 996.0
+offset_bottom = 31.0
+text = "TIMER"
+label_settings = SubResource("LabelSettings_tsk1s")
