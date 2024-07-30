@@ -7,3 +7,4 @@ signal health_upgrade_entered(body: Node2D)
 
 signal reset_button_pressed()
 signal enemy_death()
+signal enemy_touched(body: Node2D)

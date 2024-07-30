@@ -5,7 +5,8 @@ signal hit
 
 #@onready var sprite : AnimatedSprite2D = $AnimatedSprite2D
 @onready var ray_cast : RayCast2D = $RayCast2D
-@onready var collision : CollisionShape2D = $CollisionShape2D
+@onready var collision : CollisionShape2D = $DamageCollider/CollisionShape2D
+@onready var damage_collider : Area2D = $DamageCollider
 
 @onready var state_machine : StateMachine = $EnemyStateMachine
 @onready var enemy_wander_state: Node = $EnemyStateMachine/EnemyWanderState
@@ -171,3 +172,7 @@ func _on_hit() -> void:
 	if self.health < 1:
 		signal_bus.enemy_death.emit()
 		queue_free()
+
+
+func _on_damage_collider_body_entered(body:Node2D) -> void:
+	signal_bus.enemy_touched.emit(body)

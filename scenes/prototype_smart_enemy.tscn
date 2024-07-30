@@ -9,9 +9,6 @@
 [ext_resource type="Script" path="res://scripts/prototype_smart_enemy/enemy_attack_state.gd" id="6_wmypl"]
 [ext_resource type="Script" path="res://scripts/util/ray_direction_setup.gd" id="7_o8o6u"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_au13p"]
-radius = 45.7609
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_dia2s"]
 atlas = ExtResource("2_1rasx")
 region = Rect2(4.76, 8.829, 233, 150)
@@ -42,15 +39,14 @@ animations = [{
 radius = 40.75
 height = 122.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_au13p"]
+radius = 45.7609
+
 [node name="Enemy" type="CharacterBody2D"]
 scale = Vector2(4, 4)
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_fp571")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(4.25, 2.25)
-shape = SubResource("CircleShape2D_au13p")
 
 [node name="Sprites" type="Node2D" parent="."]
 metadata/_edit_lock_ = true
@@ -107,5 +103,12 @@ collision_mask = 64
 position = Vector2(1.5, -31.75)
 shape = SubResource("CapsuleShape2D_tsenq")
 
+[node name="DamageCollider" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageCollider"]
+position = Vector2(4.25, 2.25)
+shape = SubResource("CircleShape2D_au13p")
+
 [connection signal="hit" from="." to="." method="_on_hit"]
 [connection signal="ready" from="RayDirection" to="RayDirection" method="_on_ready"]
+[connection signal="body_entered" from="DamageCollider" to="." method="_on_damage_collider_body_entered"]
