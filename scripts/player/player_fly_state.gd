@@ -9,8 +9,10 @@ func _ready() -> void:
 	set_process_input(false)
 
 func _input(event):
-	if event.is_action_pressed("ui_accept"):
+	if event.is_action_pressed("brake_key"):
 		state_machine._change_state(state_machine.deceleration_state)
+	if event.is_action_pressed("boost_key"):
+		player._boost_state()
 
 func _process(delta: float) -> void:
 	player.move_and_collide(player.velocity * delta)

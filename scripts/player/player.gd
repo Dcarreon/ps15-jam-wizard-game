@@ -69,4 +69,4 @@ func _on_animated_sprite_2d_animation_finished() ->void:
 
 func _boost_state() -> void:
 	if boost_upgrade:
-		pass	
+		state_machine._change_state(state_machine.boost_state)	

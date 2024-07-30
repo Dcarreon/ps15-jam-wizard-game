@@ -4,6 +4,7 @@ extends "res://scripts/state_machine.gd"
 @onready var fly_state : State = $PlayerFlyState
 @onready var deceleration_state : State = $PlayerDecelerationState
 @onready var no_input_state : State = $PlayerNoInputState
+@onready var boost_state : State = $PlayerBoostState
 
 func _ready() -> void:
 	_change_state(state)
