@@ -8,7 +8,7 @@ radius = 23.0217
 [node name="Projectile" type="Area2D"]
 z_index = 7
 collision_layer = 64
-collision_mask = 32
+collision_mask = 36
 script = ExtResource("1_qqqsb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
