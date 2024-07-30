@@ -9,6 +9,7 @@ extends CharacterBody2D
 @export var acceleration : float = 500
 @export var deceleration : float  = 0.05 # Percentage
 
+var spawn_point : Vector2
 var max_health : int 
 var health : int 
 var boost_upgrade : bool
@@ -23,6 +24,7 @@ func _ready() -> void:
 	max_health = 3
 	health = 3
 	boost_upgrade = false
+	spawn_point = global_position
 
 func _process(delta: float) -> void:
 	collision = move_and_collide(velocity * delta)
@@ -61,11 +63,15 @@ func _player_damaged(type: damage_type) -> void:
 			health = health - 1
 			sprite.play("falling")
 
+func _respawn() -> void:
+	global_position = spawn_point
+	state_machine._change_state(state_machine.fly_state)
+
 func _on_animated_sprite_2d_animation_finished() ->void:
 	var anim_name : String = sprite.animation
 	match anim_name:
 		"falling":
-			get_tree().reload_current_scene()
+			_respawn()
 
 func _boost_state() -> void:
 	if boost_upgrade:
