@@ -1,6 +1,7 @@
-[gd_scene load_steps=38 format=3 uid="uid://c1pefes17fnxn"]
+[gd_scene load_steps=39 format=3 uid="uid://c1pefes17fnxn"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_om4em"]
+[ext_resource type="PackedScene" uid="uid://salxfnfh747b" path="res://scenes/health_gui.tscn" id="2_aynrh"]
 [ext_resource type="Texture2D" uid="uid://bmayijehjocqs" path="res://assets/Lantern__Directions_02.png" id="2_oyf36"]
 [ext_resource type="Texture2D" uid="uid://sgysm2df11nd" path="res://assets/Lantern_Fall_Animation_Sheet.png" id="3_6htb2"]
 [ext_resource type="Script" path="res://scripts/player/player_state_machine.gd" id="3_8c2ak"]
@@ -216,6 +217,14 @@ stream_0/stream = ExtResource("11_5nvke")
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(-3, -17)
 script = ExtResource("1_om4em")
+health_gui_array = Array[PackedScene]([ExtResource("2_aynrh"), ExtResource("2_aynrh"), ExtResource("2_aynrh")])
+
+[node name="HealthContainer" type="HBoxContainer" parent="."]
+self_modulate = Color(0.227451, 1, 1, 1)
+offset_left = -29.0
+offset_top = -59.0
+offset_right = 35.0
+offset_bottom = -39.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(3, -3)

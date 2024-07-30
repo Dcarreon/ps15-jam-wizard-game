@@ -116,7 +116,7 @@ metadata/_edit_lock_ = true
 z_index = 2
 position = Vector2(-3386, 2757)
 
-[node name="AnimatedSprite2D" parent="Player" index="0"]
+[node name="AnimatedSprite2D" parent="Player" index="1"]
 animation = &"down"
 
 [node name="Camera2D" type="Camera2D" parent="Player"]

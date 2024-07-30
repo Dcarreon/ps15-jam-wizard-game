@@ -5,10 +5,12 @@ extends CharacterBody2D
 @onready var sprite : AnimatedSprite2D = $AnimatedSprite2D
 @onready var collision_object : CollisionShape2D = $CollisionShape2D
 @onready var state_machine : StateMachine = $PlayerStateMachine
+@onready var health_container : HBoxContainer = $HealthContainer
 #SFX
 @onready var bounce_sfx : AudioStreamPlayer = $PlayerSFX/Bounce
 @onready var falling_sfx : AudioStreamPlayer = $PlayerSFX/Falling
 
+@export var health_gui_array : Array[PackedScene]
 @export var max_speed : float = 10000
 @export var acceleration : float = 500
 @export var deceleration : float  = 0.05 # Percentage
@@ -29,6 +31,10 @@ func _ready() -> void:
 	health = 3
 	boost_upgrade = false
 	spawn_point = global_position
+
+	for gui in health_gui_array:
+		var new_gui = gui.instantiate()
+		health_container.add_child(new_gui)
 
 func _process(delta: float) -> void:
 	collision = move_and_collide(velocity * delta)
@@ -64,6 +70,7 @@ func _player_damaged(type: damage_type) -> void:
 	match type:
 		0: #FALLING
 			velocity = Vector2.ZERO
+			_remove_one_health_gui()
 			health = health - 1
 			falling_sfx.play(2.15)
 			sprite.play("falling")
@@ -84,3 +91,8 @@ func _on_animated_sprite_2d_animation_finished() ->void:
 func _boost_state() -> void:
 	if boost_upgrade:
 		state_machine._change_state(state_machine.boost_state)	
+
+func _remove_one_health_gui() -> void:
+	for gui in health_container.get_children():
+		health_container.remove_child(gui)
+		break
