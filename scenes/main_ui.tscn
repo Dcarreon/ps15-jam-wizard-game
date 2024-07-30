@@ -1,20 +1,49 @@
-[gd_scene load_steps=3 format=3 uid="uid://tmvxbpwun4o5"]
+[gd_scene load_steps=4 format=3 uid="uid://tmvxbpwun4o5"]
 
 [ext_resource type="Script" path="res://scripts/ui/main_ui.gd" id="1_ncekq"]
+[ext_resource type="Texture2D" uid="uid://qvbx5ijus7" path="res://assets/End_Credit_screen_02.png" id="2_yjm4c"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_tsk1s"]
-font_size = 30
-outline_size = 2
-outline_color = Color(0.988235, 0.988235, 0.513726, 1)
+font_size = 70
+font_color = Color(0.356863, 0.188235, 0.435294, 1)
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
 
 [node name="CanvasLayer" type="CanvasLayer"]
 layer = 5
 script = ExtResource("1_ncekq")
 
+[node name="credits" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(3, 3)
+texture = ExtResource("2_yjm4c")
+centered = false
+
 [node name="TimerLabel" type="Label" parent="."]
-offset_left = 948.0
-offset_top = 8.0
-offset_right = 996.0
-offset_bottom = 31.0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -89.5
+offset_right = 89.5
+offset_bottom = 83.0
+grow_horizontal = 2
 text = "TIMER"
 label_settings = SubResource("LabelSettings_tsk1s")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Reset" type="Button" parent="Control"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Reset"
+text_direction = 1
+
+[node name="ScoreTimerPos" type="Marker2D" parent="."]
+position = Vector2(564, 194)
+
+[connection signal="button_up" from="Control/Reset" to="." method="_on_reset_button_up"]

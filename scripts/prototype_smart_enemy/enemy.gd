@@ -13,6 +13,8 @@ signal hit
 @onready var enemy_attack_state: Node = $EnemyStateMachine/EnemyAttackState
 @onready var direction_rays: Node2D = $RayDirection
 
+@onready var signal_bus: SignalBus = $"../../SignalBus"
+
 @export var max_speed : float = 500
 @export var acceleration : float = 300
 @export var vision_range : float = 600
@@ -22,7 +24,6 @@ signal hit
 @export var attack_range : float = 60
 @export var target_memory : float = 2
 @export var health : int = 5
-
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var sprites: Node2D = $Sprites
@@ -168,4 +169,5 @@ func get_best_direction(desired_direction : Vector2):
 func _on_hit() -> void:
 	self.health -= 1
 	if self.health < 1:
+		signal_bus.enemy_death.emit()
 		queue_free()

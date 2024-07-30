@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://dphea4wrg5oig"]
+[gd_scene load_steps=34 format=3 uid="uid://dphea4wrg5oig"]
 
 [ext_resource type="Script" path="res://scripts/level/game_manager.gd" id="1_cjq3u"]
 [ext_resource type="Script" path="res://scripts/level/signal_bus.gd" id="1_irbs0"]
@@ -14,6 +14,9 @@
 [ext_resource type="PackedScene" uid="uid://cptg2vcr0cagh" path="res://scenes/upgrade_circle.tscn" id="12_ubij5"]
 [ext_resource type="PackedScene" uid="uid://tmvxbpwun4o5" path="res://scenes/main_ui.tscn" id="13_smplt"]
 [ext_resource type="Script" path="res://scripts/util/custom_timer.gd" id="14_qy15x"]
+[ext_resource type="AudioStream" uid="uid://di2k7kihqpeu2" path="res://assets/sfx/Alchemy level spooky.mp3" id="15_4qxak"]
+[ext_resource type="Script" path="res://scripts/level/music_manager.gd" id="15_topbb"]
+[ext_resource type="AudioStream" uid="uid://cdjgdfewtm7qs" path="res://assets/sfx/Alchemy level happy.mp3" id="16_0getr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_itiww"]
 atlas = ExtResource("8_lj00k")
@@ -119,7 +122,7 @@ metadata/_edit_lock_ = true
 
 [node name="Player" parent="Play" instance=ExtResource("1_xwa3k")]
 z_index = 2
-position = Vector2(-3389, 2804)
+position = Vector2(-182, 19)
 collision_mask = 5
 
 [node name="HealthContainer" parent="Play/Player" index="1"]
@@ -365,12 +368,13 @@ shape = SubResource("RectangleShape2D_5pa5k")
 color = Color(0.737255, 0.690196, 0.0980392, 0.368627)
 polygon = PackedVector2Array(888, -1227, 888, -509, 950, -508, 948, -1227)
 
-[node name="smartEnemy" parent="Play" node_paths=PackedStringArray("target") instance=ExtResource("9_lxlyq")]
+[node name="smartEnemy" parent="Play" node_paths=PackedStringArray("target", "signal_bus") instance=ExtResource("9_lxlyq")]
 z_index = 3
 position = Vector2(685, -815)
 scale = Vector2(2, 2)
 max_speed = 300.0
 target = NodePath("../Player")
+signal_bus = NodePath("../../SignalBus")
 
 [node name="AlchemyAttack" parent="Play" node_paths=PackedStringArray("_target") instance=ExtResource("11_aohqk")]
 _target = NodePath("../smartEnemy")
@@ -391,9 +395,21 @@ signal_bus = NodePath("../../SignalBus")
 game_timer = NodePath("../GameTimer")
 signal_bus = NodePath("../SignalBus")
 
+[node name="GameOver" type="Node" parent="."]
+
 [node name="GameTimer" type="Node" parent="."]
 script = ExtResource("14_qy15x")
 wait_time = 600.0
+
+[node name="MusicManager" type="Node" parent="." node_paths=PackedStringArray("signal_bus")]
+script = ExtResource("15_topbb")
+signal_bus = NodePath("../SignalBus")
+
+[node name="BossMusic" type="AudioStreamPlayer" parent="MusicManager"]
+stream = ExtResource("16_0getr")
+
+[node name="BasicMusic" type="AudioStreamPlayer" parent="MusicManager"]
+stream = ExtResource("15_4qxak")
 
 [connection signal="body_entered" from="Play/FallingAreas/1/8" to="Play/FallingAreas/1/8" method="_on_body_entered"]
 [connection signal="body_entered" from="Play/FallingAreas/11/8" to="Play/FallingAreas/11/8" method="_on_body_entered"]

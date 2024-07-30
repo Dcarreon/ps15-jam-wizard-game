@@ -30,7 +30,7 @@ func _process(delta: float) -> void:
 			timeout.emit()
 			
 func get_time_left(formated : bool = true):
-	return seconds_to_mmss(time_left) if formated else time_left
+	return seconds_to_mmss(time_left) if formated else str(time_left)
 
 func start():
 	cur_state = state.start
