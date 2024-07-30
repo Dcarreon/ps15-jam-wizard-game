@@ -33,6 +33,7 @@ func _on_boost_upgrade_entered(body: Node2D):
 func _on_health_upgrade_entered(body: Node2D):
 	if body.name == "Player":
 		player._health_upgrade()
+		player.spawn_point = body.global_position
 		
 func _on_game_timer_timeout() -> void:
 	reset_game()
