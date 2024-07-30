@@ -12,4 +12,7 @@ func _ready() -> void:
 	boundries = boundry_maker.get_boundry(texture_image, image_w, image_h)
 	map_boundry = boundry_maker.get_boundry_collision(boundries, image_w, image_h, scale)
 	map_boundry.add_to_group("static_collisions")
+	map_boundry.set_collision_layer_value(1, true)
+	map_boundry.set_collision_layer_value(3, true)
+	
 	get_node("/root").add_child.call_deferred(map_boundry)
