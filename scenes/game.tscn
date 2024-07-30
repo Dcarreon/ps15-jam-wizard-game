@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://dphea4wrg5oig"]
+[gd_scene load_steps=29 format=3 uid="uid://dphea4wrg5oig"]
 
 [ext_resource type="Script" path="res://scripts/level/game_manager.gd" id="1_cjq3u"]
 [ext_resource type="Script" path="res://scripts/level/signal_bus.gd" id="1_irbs0"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://d4bksgen358x4" path="res://scenes/prototype_smart_enemy.tscn" id="9_lxlyq"]
 [ext_resource type="Script" path="res://scripts/level/road_boundry.gd" id="10_crxo0"]
 [ext_resource type="PackedScene" uid="uid://hxinu1aco5mr" path="res://scenes/alchemy_attack.tscn" id="11_aohqk"]
+[ext_resource type="PackedScene" uid="uid://cptg2vcr0cagh" path="res://scenes/upgrade_circle.tscn" id="12_ubij5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_itiww"]
 atlas = ExtResource("8_lj00k")
@@ -113,7 +114,7 @@ metadata/_edit_lock_ = true
 
 [node name="Player" parent="." instance=ExtResource("1_xwa3k")]
 z_index = 2
-position = Vector2(202, 290)
+position = Vector2(-3386, 2757)
 
 [node name="AnimatedSprite2D" parent="Player" index="0"]
 animation = &"down"
@@ -373,6 +374,10 @@ _target = NodePath("../smartEnemy")
 position = Vector2(1166, -354)
 _target = NodePath("../smartEnemy")
 
+[node name="UpgradeCircle" parent="." node_paths=PackedStringArray("signal_bus") instance=ExtResource("12_ubij5")]
+position = Vector2(-3672, 3744)
+signal_bus = NodePath("../SignalBus")
+
 [connection signal="body_entered" from="FallingAreas/1/8" to="FallingAreas/1/8" method="_on_body_entered"]
 [connection signal="body_entered" from="FallingAreas/11/8" to="FallingAreas/11/8" method="_on_body_entered"]
 [connection signal="body_entered" from="FallingAreas/2/9" to="FallingAreas/2/9" method="_on_body_entered"]
@@ -389,6 +394,7 @@ _target = NodePath("../smartEnemy")
 [connection signal="body_entered" from="FallingAreas/7/14" to="FallingAreas/7/14" method="_on_body_entered"]
 [connection signal="body_entered" from="FallingAreas/12/14" to="FallingAreas/12/14" method="_on_body_entered"]
 [connection signal="navigation_polygon_changed" from="EnemyWalkbleArea/NavigationRegion2D" to="smartEnemy" method="_on_navigation_region_2d_navigation_polygon_changed"]
+[connection signal="body_entered" from="UpgradeCircle" to="UpgradeCircle" method="_on_body_entered"]
 
 [editable path="Player"]
 [editable path="FallingAreas/1/8"]

@@ -1,15 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://cptg2vcr0cagh"]
+[gd_scene load_steps=4 format=3 uid="uid://cptg2vcr0cagh"]
 
-[ext_resource type="Texture2D" uid="uid://dm7n7upve3cor" path="res://assets/Damage_circles.png" id="1_rhhwg"]
+[ext_resource type="Script" path="res://scripts/alchemy_circles/upgrade_circle.gd" id="1_r6vvf"]
+[ext_resource type="Texture2D" uid="uid://dotd2a50jycfe" path="res://assets/Upgrade_Circle_Template.png" id="2_b0dur"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5jrnf"]
-radius = 26.1725
+radius = 38.4708
 
 [node name="UpgradeCircle" type="Area2D"]
+script = ExtResource("1_r6vvf")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, 8)
-texture = ExtResource("1_rhhwg")
+position = Vector2(0, -2)
+texture = ExtResource("2_b0dur")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_5jrnf")
