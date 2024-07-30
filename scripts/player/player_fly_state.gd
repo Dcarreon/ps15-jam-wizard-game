@@ -21,6 +21,7 @@ func _physics_process(delta: float):
 	if player.collision:
 		var collider = player.collision.get_collider()
 		if collider.is_in_group("static_collisions"):
+			player.bounce_sfx.play(0.0)
 			player.velocity = Vector2.ZERO
 			player.velocity = player.velocity.move_toward(player.collision.get_normal() * 800, 10000 * delta)
 	else:

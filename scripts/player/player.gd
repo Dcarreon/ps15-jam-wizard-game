@@ -1,9 +1,13 @@
 class_name Player
 extends CharacterBody2D
 
+#Base Children
 @onready var sprite : AnimatedSprite2D = $AnimatedSprite2D
 @onready var collision_object : CollisionShape2D = $CollisionShape2D
 @onready var state_machine : StateMachine = $PlayerStateMachine
+#SFX
+@onready var bounce_sfx : AudioStreamPlayer = $PlayerSFX/Bounce
+@onready var falling_sfx : AudioStreamPlayer = $PlayerSFX/Falling
 
 @export var max_speed : float = 10000
 @export var acceleration : float = 500
@@ -61,6 +65,7 @@ func _player_damaged(type: damage_type) -> void:
 		0: #FALLING
 			velocity = Vector2.ZERO
 			health = health - 1
+			falling_sfx.play(2.15)
 			sprite.play("falling")
 
 func _respawn() -> void:
