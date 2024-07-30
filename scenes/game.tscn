@@ -398,7 +398,7 @@ signal_bus = NodePath("../SignalBus")
 
 [node name="GameTimer" type="Node" parent="."]
 script = ExtResource("14_qy15x")
-wait_time = 600.0
+wait_time = 300.0
 
 [connection signal="body_entered" from="Play/FallingAreas/1/8" to="Play/FallingAreas/1/8" method="_on_body_entered"]
 [connection signal="body_entered" from="Play/FallingAreas/11/8" to="Play/FallingAreas/11/8" method="_on_body_entered"]
