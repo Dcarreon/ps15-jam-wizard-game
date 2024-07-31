@@ -11,6 +11,8 @@ func _ready() -> void:
 	credits.hide()
 	game_timer.last_ten.connect(_on_last_ten)
 	timer_label.text = str(game_timer.get_time_left(true))
+	
+	process_mode = PROCESS_MODE_ALWAYS # working even when sceneTree is paused
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:

@@ -21,6 +21,8 @@ func _ready() -> void:
 	game_timer.timeout.connect(_on_game_timer_timeout)
 	game_timer.start()
 	
+	process_mode = PROCESS_MODE_ALWAYS # working even when sceneTree is paused
+	
 func _on_falling_area_entered(body: Node2D):
 	print("game manager falling area script")
 	if body.name == "Player":
@@ -52,6 +54,9 @@ func reset_game() -> void:
 	get_tree().reload_current_scene()
 
 func _on_enemy_death() -> void:
-	print("should pause")
+	play.get_tree().paused = true
 	game_timer.stop()
 	main_ui._on_win()
+
+func _on_game_ready() -> void:
+	play.get_tree().paused = false
