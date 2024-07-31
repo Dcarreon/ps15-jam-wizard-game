@@ -399,7 +399,7 @@ signal_bus = NodePath("../SignalBus")
 
 [node name="GameTimer" type="Node" parent="."]
 script = ExtResource("14_qy15x")
-wait_time = 150.0
+wait_time = 300.0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("15_1fmwf")
