@@ -4,6 +4,7 @@ extends Node
 @export var signal_bus : SignalBus
 @export var player : CharacterBody2D
 @export var game_timer : CustomTimer
+
 @onready var main_ui: CanvasLayer = $"../MainUI"
 @onready var play: Node = $"../Play"
 

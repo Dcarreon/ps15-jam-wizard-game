@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://dphea4wrg5oig"]
+[gd_scene load_steps=32 format=3 uid="uid://dphea4wrg5oig"]
 
 [ext_resource type="Script" path="res://scripts/level/game_manager.gd" id="1_cjq3u"]
 [ext_resource type="Script" path="res://scripts/level/signal_bus.gd" id="1_irbs0"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://cptg2vcr0cagh" path="res://scenes/upgrade_circle.tscn" id="12_ubij5"]
 [ext_resource type="PackedScene" uid="uid://tmvxbpwun4o5" path="res://scenes/main_ui.tscn" id="13_smplt"]
 [ext_resource type="Script" path="res://scripts/util/custom_timer.gd" id="14_qy15x"]
+[ext_resource type="AudioStream" uid="uid://b0flosvjaprdh" path="res://assets/music/Shadowbeast theme.mp3" id="15_1fmwf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_itiww"]
 atlas = ExtResource("8_lj00k")
@@ -398,7 +399,12 @@ signal_bus = NodePath("../SignalBus")
 
 [node name="GameTimer" type="Node" parent="."]
 script = ExtResource("14_qy15x")
-wait_time = 300.0
+wait_time = 150.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_1fmwf")
+autoplay = true
+bus = &"Music"
 
 [connection signal="body_entered" from="Play/FallingAreas/1/8" to="Play/FallingAreas/1/8" method="_on_body_entered"]
 [connection signal="body_entered" from="Play/FallingAreas/11/8" to="Play/FallingAreas/11/8" method="_on_body_entered"]
